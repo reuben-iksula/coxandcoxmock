@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <!-- Promotion -->
+    <div
+      x-data="{
+        promos:[
+          'A feel-good spring scheme',
+          'Use code INTROAPRA for 20% off full price items',
+          'Up to 70% off clearance'
+        ],
+        currentPromo:0,
+        handleIncrement(){
+          let promo=this.$refs.promo;
+          promo.classList.add('-translate-x-96');
+          setTimeout(()=>{
+            promo.classList.remove('-translate-x-96')
+          },250)
+
+          if(this.currentPromo===this.promos.length-1){
+            this.currentPromo=0;
+          }else{
+            this.currentPromo++;
+          }
+        },
+        handleDecrement(){
+          let promo=this.$refs.promo;
+          promo.classList.add('translate-x-96');
+          setTimeout(()=>{
+            promo.classList.remove('translate-x-96')
+          },250)
+          if(this.currentPromo===0){
+            this.currentPromo=this.promos.length-1;
+          }else{
+            this.currentPromo--;
+          }
+        }
+    }"
+      class="flex justify-between bg-darkAccent p-[18px] text-sm font-medium"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-4 h-4 text-gray-200 desktop:hidden"
+        @click="handleIncrement"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15.75 19.5L8.25 12l7.5-7.5"
+        />
+      </svg>
+      <div
+        class="hidden w-full px-24 text-gray-100 desktop:flex desktop:justify-between"
+      >
+        <template x-for="promo in promos">
+          <p><a href="#" x-text="promo"></a></p>
+        </template>
+      </div>
+
+      <div class="block desktop:hidden text-gray-100">
+        <p>
+          <a
+            x-ref="promo"
+            href="#"
+            x-text="promos[currentPromo]"
+            class="inline-block transition-transform ease-linear"
+          ></a>
+        </p>
+      </div>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-4 h-4 desktop:hidden text-gray-200"
+        @click="handleDecrement"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M8.25 4.5l7.5 7.5-7.5 7.5"
+        />
+      </svg>
+    </div>
+    <!-- End Promotion -->
+    <!-- Header -->
+
+    <!--     -->
+    <header
+      x-data="{
+      navMenu:false,
+      isScreenDesktop:false,
+
+      handleScreenWidth(){
+        if(window.innerWidth>1199){
+          this.isScreenDesktop=true;
+        }else{
+          this.isScreenDesktop=false;
+        }
+      }
+    }"
+      x-init="handleScreenWidth"
+      @resize.window.throttle.100ms="handleScreenWidth"
+    >
+      <div class="p-3.5">
+        <div
+          class="grid grid-cols-3 grid-rows-2 desktop:grid-rows-1 desktop:grid-cols-[repeat(2,_minmax(15rem,_1.5fr))_repeat(2,1fr)] items-center desktop:justify-items-center pb-2"
+        >
+          <!-- menu bar -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6 desktop:hidden"
+            @click="navMenu=true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
+          </svg>
+
+          <picture
+            class="justify-self-center desktop:justify-self-start desktop:order-1 desktop:min-w-[20rem] min-w-[10rem]"
+          >
+            <source media="(max-width:1199px)" srcset="/logoMobile.png" />
+            <source media="(min-width:1200px)" srcset="/logoDesktop.png" />
+
+            <img src="/logoMobile.png" alt="logo" />
+          </picture>
+          <!-- first cart and user profile -->
+          <!-- is Screen Desktop true? visible. If not, check navMenu status,
+          if true, the labeled user profile will be invisible and vice versa -->
+          <div
+            class="flex justify-end gap-8 desktop:order-4"
+            :class="isScreenDesktop?'flex':navMenu?'hidden':'flex'"
+          >
+            <div class="flex gap-2 items-center cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                fill="currentColor"
+                class="w-6 h-6 fill-gray-700 stroke-gray-700"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                />
+              </svg>
+              <span class="text-sm font-medium hidden desktop:block"
+                >Sign In</span
+              >
+            </div>
+            <div class="flex gap-2 items-center cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+                stroke-width="1.5"
+                stroke="currentColor"
+                fill="currentColor"
+                class="w-6 h-6 fill-gray-700 stroke-gray-700"
+              >
+                <path
+                  d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"
+                />
+              </svg>
+              <span class="text-sm font-medium hidden desktop:block"
+                >Basket</span
+              >
+            </div>
+          </div>
+          <!-- Search -->
+          <div
+            class="w-full col-span-3 desktop:col-span-1 desktop:order-2 relative"
+          >
+            <button
+              class="w-5 h-5 text-gray-700 absolute left-3.5 top-1/2 -translate-y-1/2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class=""
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                />
+              </svg>
+            </button>
+
+            <input
+              class="w-full h-12 pt-1 pl-10 inline-block rounded-[3px] border border-gray-500 focus:outline-none focus:bg-blue-50 placeholder-gray-700 placeholder:text-sm"
+              type="text"
+              placeholder="SEARCH"
+            />
+          </div>
+
+          <div class="hidden desktop:block desktop:order-3">
+            <div>0330 333 2123</div>
+            <p>MON-FRI 9<span>AM</span> - 5<span>PM</span></p>
+          </div>
+        </div>
+      </div>
+      <!-- navMenu first section -->
+      <div x-show="navMenu && !isScreenDesktop">
+        <div
+          class="absolute top-0 right-0 left-0 p-4 z-20 border-b flex justify-between items-center bg-white"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+            @click="navMenu=false"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+          <img src="/logoMobile.png" alt="logo" />
+
+          <!-- second cart and user profile -->
+          <div class="desktop:hidden flex justify-end gap-8">
+            <div class="flex gap-2 items-center cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                fill="currentColor"
+                class="w-6 h-6 fill-gray-700 stroke-gray-700"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                />
+              </svg>
+            </div>
+            <div class="flex gap-2 items-center cursor-pointer">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+                stroke-width="1.5"
+                stroke="currentColor"
+                fill="currentColor"
+                class="w-6 h-6 fill-gray-700 stroke-gray-700"
+              >
+                <path
+                  d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"
+                />
+              </svg>
+            </div>
+          </div>
+          <!-- end second cart and user profile  -->
+        </div>
+      </div>
+      <!-- end navMenu first section -->
+      <!-- overlay -->
+      <div
+        x-show="navMenu && !isScreenDesktop"
+        class="fixed inset-0 z-10 bg-black/50"
+      ></div>
+      <!-- navMenu second section 
+       x-transition:enter-start.duration.500ms="-translate-x-full"
+        x-transition:enter-end.duration.500ms="translate-x-0"
+        x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="-translate-x-full"
+        $el.classList.remove('transition-transform')
+            $el.classList.add('-translate-x-full')
+            setTimeout(()=>{
+              $el.classList.add('transition-transform')
+              $el.classList.remove('-translate-x-full')
+            },50)
+
+            $el.classList.remove('transition-transform')
+            $el.classList.add('translate-x-full')
+            setTimeout(()=>{
+              $el.classList.add('transition-transform')
+              $el.classList.remove('translate-x-full')
+            },50)
+      -->
+      <nav
+        :class="isScreenDesktop?'visible':navMenu?'visible':'invisible'"
+        class="w-[70%] h-full fixed top-0 z-10 desktop:animation-none desktop:static desktop:h-auto desktop:w-full bg-white border-gray-300 overflow-auto"
+        x-init="$watch('navMenu',(val,oldVal)=>{
+          $el.classList.remove('invisible')
+          $el.classList.remove('animate-slide-left');
+          $el.classList.remove('animate-slide-right');  
+          
+          if(val===true){
+            $el.classList.add('animate-slide-right'); 
+          }else if(val===false){
+            $el.classList.add('animate-slide-left');
+          }
+        })"
+        x-effect="if(isScreenDesktop){
+          $el.classList.remove('animate-slide-left');
+          $el.classList.remove('animate-slide-right');
+      } "
+      >
+        <ul
+          class="flex flex-col desktop:flex-row gap-6 p-4 desktop:pt-0 mt-[4.3rem] desktop:m-0 text-[1.30rem] desktop:text-sm font-light desktop:font-normal desktop:border-b desktop:border-gray-300 text-[#444] [&>li>svg]:desktop:hidden"
+        >
+          <li>
+            <a href="#">New</a>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Outdoor</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Seating</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Tables</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Storage</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Bedroom</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Mirrors</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Lighting</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Accessories</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Soft Furnishings</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Rugs</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Shop By Room</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Gifts</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Inspiration</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Clearance</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+          <li>
+            <a href="#">Gift Vouchers</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </li>
+        </ul>
+        <div class="">
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Help</a></li>
+            <li><a href="#">Delivery</a></li>
+            <li><a href="#">Orderline - 0330 333 2123</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <!-- End Header -->
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
