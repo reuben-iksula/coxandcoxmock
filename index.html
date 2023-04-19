@@ -6,7 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
   </head>
-  <body>
+  <body
+    x-data="{
+      navMenu:false,
+      isScreenDesktop:false,
+      isScreenTablet:false,
+
+      handleScreenWidth(){
+        if(window.innerWidth>1199){
+          this.isScreenDesktop=true;
+          this.navMenu=false;
+        }else{
+          this.isScreenDesktop=false;
+        }
+
+        if(window.innerWidth>767 && window.innerWidth<1200){
+          this.isScreenTablet=true;
+        }else{
+          this.isScreenTablet=false;
+        }
+      }
+    }"
+    x-init="handleScreenWidth"
+    @resize.window.throttle.100ms="handleScreenWidth"
+    class="bg-[#eaedef]"
+  >
     <!-- Promotion -->
     <div
       x-data="{
@@ -16,20 +40,40 @@
           'Up to 70% off clearance'
         ],
         currentPromo:0,
-        handleIncrement(){
+        previousPromo:null,
+
+        init(){
+          this.previousPromo=this.promos.length-1;
+        },
+
+        handleRight(){
           let promo=this.$refs.promo;
-          promo.classList.add('-translate-x-96');
+          let prevPromo=this.$refs.prevpromo;
+          let change=false;
+         
+        
+        
           setTimeout(()=>{
-            promo.classList.remove('-translate-x-96')
-          },250)
+          prevPromo.classList.remove('-left-[100%]');
+          prevPromo.classList.add('left-1/2');
+          prevPromo.classList.add('-translate-x-1/2');
+          
+          promo.classList.remove('right-1/2');
+          promo.classList.add('-right-[100%]');
 
           if(this.currentPromo===this.promos.length-1){
             this.currentPromo=0;
           }else{
             this.currentPromo++;
           }
+
+          },500)
+          
+          
+
+         
         },
-        handleDecrement(){
+        handleLeft(){
           let promo=this.$refs.promo;
           promo.classList.add('translate-x-96');
           setTimeout(()=>{
@@ -42,8 +86,12 @@
           }
         }
     }"
+      x-init="$watch('currentPromo',(val,old)=>{
+      previousPromo=old;
+    })"
       class="flex justify-between bg-darkAccent p-[18px] text-sm font-medium"
     >
+      <!-- left -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -51,7 +99,7 @@
         stroke-width="1.5"
         stroke="currentColor"
         class="w-4 h-4 text-gray-200 desktop:hidden"
-        @click="handleIncrement"
+        @click="handleLeft"
       >
         <path
           stroke-linecap="round"
@@ -63,17 +111,26 @@
         class="hidden w-full px-24 text-gray-100 desktop:flex desktop:justify-between"
       >
         <template x-for="promo in promos">
-          <p><a href="#" x-text="promo"></a></p>
+          <p>
+            <a href="#" x-text="promo"></a>
+          </p>
         </template>
       </div>
 
       <div class="block desktop:hidden text-gray-100">
         <p>
           <a
+            href="#"
+            x-ref="prevpromo"
+            x-text="promos[currentPromo]"
+            class="absolute inline-block transition-[left] -left-[100%] ease-linear duration-500"
+          >
+          </a>
+          <a
             x-ref="promo"
             href="#"
-            x-text="promos[currentPromo]"
-            class="inline-block transition-transform ease-linear"
+            x-text="promos[previousPromo]"
+            class="absolute inline-block transition-[right] right-1/2 translate-x-1/2 ease-linear duration-500"
           ></a>
         </p>
       </div>
@@ -85,7 +142,7 @@
         stroke-width="1.5"
         stroke="currentColor"
         class="w-4 h-4 desktop:hidden text-gray-200"
-        @click="handleDecrement"
+        @click="handleRight"
       >
         <path
           stroke-linecap="round"
@@ -98,22 +155,7 @@
     <!-- Header -->
 
     <!--     -->
-    <header
-      x-data="{
-      navMenu:false,
-      isScreenDesktop:false,
-
-      handleScreenWidth(){
-        if(window.innerWidth>1199){
-          this.isScreenDesktop=true;
-        }else{
-          this.isScreenDesktop=false;
-        }
-      }
-    }"
-      x-init="handleScreenWidth"
-      @resize.window.throttle.100ms="handleScreenWidth"
-    >
+    <header class="bg-white">
       <div class="p-3.5">
         <div
           class="grid grid-cols-3 grid-rows-2 desktop:grid-rows-1 desktop:grid-cols-[repeat(2,_minmax(15rem,_1.5fr))_repeat(2,1fr)] items-center desktop:justify-items-center pb-2"
@@ -191,7 +233,7 @@
             class="w-full col-span-3 desktop:col-span-1 desktop:order-2 relative"
           >
             <button
-              class="w-5 h-5 text-gray-700 absolute left-3.5 top-1/2 -translate-y-1/2"
+              class="w-5 h-5 text-gray-700 absolute left-3.5 top-1/2 -translate-y-1/2 desktop:right-3.5 desktop:left-auto"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -209,21 +251,43 @@
               </svg>
             </button>
 
+            <!-- mic -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5 hidden absolute right-12 top-1/2 -translate-y-1/2 desktop:block text-gray-500 cursor-pointer"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"
+              />
+            </svg>
+
             <input
-              class="w-full h-12 pt-1 pl-10 inline-block rounded-[3px] border border-gray-500 focus:outline-none focus:bg-blue-50 placeholder-gray-700 placeholder:text-sm"
+              class="w-full h-12 pt-1 pl-10 desktop:pl-4 inline-block rounded-[3px] border border-gray-500 text-gray-700 focus:outline-none focus:bg-blue-50 placeholder-gray-700 desktop:placeholder-gray-500 placeholder:text-sm"
               type="text"
               placeholder="SEARCH"
             />
           </div>
 
           <div class="hidden desktop:block desktop:order-3">
-            <div>0330 333 2123</div>
-            <p>MON-FRI 9<span>AM</span> - 5<span>PM</span></p>
+            <div class="text-gray-600 font-semibold tracking-wider -mb-0.5">
+              0330 333 2123
+            </div>
+            <p class="text-sm text-[#383737] font-light tracking-tight">
+              MON-FRI 9<span class="text-xs">AM</span> - 5<span class="text-xs"
+                >PM</span
+              >
+            </p>
           </div>
         </div>
       </div>
       <!-- navMenu first section -->
-      <div x-show="navMenu && !isScreenDesktop">
+      <div x-show="navMenu && !isScreenDesktop" x-cloak>
         <div
           class="absolute top-0 right-0 left-0 p-4 z-20 border-b flex justify-between items-center bg-white"
         >
@@ -284,28 +348,15 @@
       <!-- overlay -->
       <div
         x-show="navMenu && !isScreenDesktop"
+        x-cloak
         class="fixed inset-0 z-10 bg-black/50"
       ></div>
       <!-- navMenu second section 
-       x-transition:enter-start.duration.500ms="-translate-x-full"
-        x-transition:enter-end.duration.500ms="translate-x-0"
-        x-transition:leave-start="translate-x-0"
-        x-transition:leave-end="-translate-x-full"
-        $el.classList.remove('transition-transform')
-            $el.classList.add('-translate-x-full')
-            setTimeout(()=>{
-              $el.classList.add('transition-transform')
-              $el.classList.remove('-translate-x-full')
-            },50)
-
-            $el.classList.remove('transition-transform')
-            $el.classList.add('translate-x-full')
-            setTimeout(()=>{
-              $el.classList.add('transition-transform')
-              $el.classList.remove('translate-x-full')
-            },50)
       -->
       <nav
+        x-data="{
+          activeNavLink:''
+        }"
         :class="isScreenDesktop?'visible':navMenu?'visible':'invisible'"
         class="w-[70%] h-full fixed top-0 z-10 desktop:animation-none desktop:static desktop:h-auto desktop:w-full bg-white border-gray-300 overflow-auto"
         x-init="$watch('navMenu',(val,oldVal)=>{
@@ -322,13 +373,19 @@
         x-effect="if(isScreenDesktop){
           $el.classList.remove('animate-slide-left');
           $el.classList.remove('animate-slide-right');
-      } "
+      }"
       >
         <ul
-          class="flex flex-col desktop:flex-row gap-6 p-4 desktop:pt-0 mt-[4.3rem] desktop:m-0 text-[1.30rem] desktop:text-sm font-light desktop:font-normal desktop:border-b desktop:border-gray-300 text-[#444] [&>li>svg]:desktop:hidden"
+          class="flex flex-col desktop:flex-row desktop:justify-evenly gap-6 p-4 desktop:pt-0 mt-[4.3rem] desktop:m-0 text-[1.30rem] desktop:text-[0.855rem] font-light desktop:font-medium desktop:border-b desktop:border-gray-300 text-black [&>li>svg]:desktop:hidden"
         >
           <li>
-            <a href="#">New</a>
+            <a
+              x-effect="console.log(activeNavLink)"
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >New</a
+            >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -345,8 +402,103 @@
               />
             </svg>
           </li>
+          <!-- toggle -->
+          <li
+            @click="if(activeNavLink==='Outdoor' && !isScreenDesktop)activeNavLink='';else{activeNavLink='Outdoor'}"
+          >
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Outdoor</a
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -mr-3 inline float-right transition-transform"
+              :class="{'rotate-90':activeNavLink==='Outdoor'}"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+            <!-- accordion item start -->
+            <ul
+              x-show="!isScreenDesktop && activeNavLink==='Outdoor'"
+              x-cloak
+              x-transition
+              class="border-l border-gray-400"
+            >
+              <li>
+                <a class="inline-block p-5 text-gray-700" href="#"
+                  >Outdoor Furniture</a
+                >
+                <ul class="p-4 flex flex-col gap-3">
+                  <li><a href="#">Benches & Chairs</a></li>
+                  <li><a href="#">Outdoor Dining Tables & Chairs</a></li>
+                  <li><a href="#">Lounge & Corner Sets</a></li>
+                  <li><a href="#">Bistro Sets</a></li>
+                  <li><a href="#">Outdoor Side Tables</a></li>
+                  <li><a href="#">Daybeds & Loungers</a></li>
+                  <li><a href="#">Outdoor Hanging Chairs</a></li>
+                  <li><a href="#">Furniture Covers</a></li>
+                  <li><a href="#">View All</a></li>
+                </ul>
+              </li>
+
+              <ul>
+                <li>
+                  <a class="inline-block p-5" href="#">Outdoor Accessories</a>
+                  <ul class="p-4 flex flex-col gap-3">
+                    <li><a href="#">Decorative Outdoors</a></li>
+                    <li><a href="#">Doormats</a></li>
+                    <li><a href="#">Outdoor Garden Mirrors</a></li>
+                    <li><a href="#">Braziers & Firepits</a></li>
+                    <li><a href="#">Parasols & Sunshades</a></li>
+                    <li><a href="#">Water Features</a></li>
+                    <li><a href="#">Outdoor Textiles</a></li>
+                    <li><a href="#">Plant Pots & Troughs</a></li>
+                    <li><a href="#">View All</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a class="inline-block p-5" href="#">Outdoor Lighting</a>
+                  <ul class="p-4 flex flex-col gap-3">
+                    <li><a href="#">Decorative Outdoor Lights</a></li>
+                    <li><a href="#">Outdoor Wall Lights</a></li>
+                    <li><a href="#">Festoon Lights</a></li>
+                    <li><a href="#">View All</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <ul>
+                <li>
+                  <a class="inline-block p-5" href="#">Outdoor Trends</a>
+                  <ul class="p-4 flex flex-col gap-3">
+                    <li><a href="#">Tuscan Villa</a></li>
+                    <li><a href="#">Industrial Garden</a></li>
+                    <li><a href="#">Scandi Outdoor</a></li>
+                    <li><a href="#">Modern Country</a></li>
+                    <li><a href="#">Balinese Summer</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </ul>
+            <!-- accordian item end -->
+          </li>
           <li>
-            <a href="#">Outdoor</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Seating</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -364,7 +516,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Seating</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Tables</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -382,7 +538,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Tables</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Storage</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -400,7 +560,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Storage</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Bedroom</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -418,7 +582,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Bedroom</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Mirrors</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -436,7 +604,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Mirrors</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Lighting</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -454,7 +626,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Lighting</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Accessories</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -472,7 +648,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Accessories</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Soft Furnishings</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -490,7 +670,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Soft Furnishings</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Rugs</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -508,7 +692,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Rugs</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Shop By Room</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -526,7 +714,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Shop By Room</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Gifts</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -544,7 +736,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Gifts</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Inspiration</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -562,7 +758,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Inspiration</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Clearance</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -580,25 +780,11 @@
             </svg>
           </li>
           <li>
-            <a href="#">Clearance</a
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-8 h-8 -mr-3 inline float-right"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </li>
-          <li>
-            <a href="#">Gift Vouchers</a
+            <a
+              @mouseover="activeNavLink=$el.innerText"
+              class="hover:border-b hover:border-black"
+              href="#"
+              >Gift Vouchers</a
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -616,17 +802,382 @@
             </svg>
           </li>
         </ul>
-        <div class="">
-          <ul>
+        <div
+          class="desktop:hidden mt-8 p-4 text-[#444] bg-[#eaedef] font-medium"
+        >
+          <ul class="flex flex-col gap-4">
             <li><a href="#">About Us</a></li>
             <li><a href="#">Help</a></li>
             <li><a href="#">Delivery</a></li>
-            <li><a href="#">Orderline - 0330 333 2123</a></li>
+            <li><a href="#">Orderline &#8212; 0330 333 2123</a></li>
           </ul>
+        </div>
+        <div
+          x-show="activeNavLink==='Outdoor'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li>
+              <a class="inline-block p-5 border-b border-gray-300" href="#"
+                >Outdoor Furniture</a
+              >
+              <ul class="p-4 flex flex-col gap-3">
+                <li><a href="#">Benches & Chairs</a></li>
+                <li><a href="#">Outdoor Dining Tables & Chairs</a></li>
+                <li><a href="#">Lounge & Corner Sets</a></li>
+                <li><a href="#">Bistro Sets</a></li>
+                <li><a href="#">Outdoor Side Tables</a></li>
+                <li><a href="#">Daybeds & Loungers</a></li>
+                <li><a href="#">Outdoor Hanging Chairs</a></li>
+                <li><a href="#">Furniture Covers</a></li>
+                <li><a href="#">View All</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a class="inline-block p-5 border-b border-gray-300" href="#"
+                >Outdoor Accessories</a
+              >
+              <ul class="p-4 flex flex-col gap-3">
+                <li><a href="#">Decorative Outdoors</a></li>
+                <li><a href="#">Doormats</a></li>
+                <li><a href="#">Outdoor Garden Mirrors</a></li>
+                <li><a href="#">Braziers & Firepits</a></li>
+                <li><a href="#">Parasols & Sunshades</a></li>
+                <li><a href="#">Water Features</a></li>
+                <li><a href="#">Outdoor Textiles</a></li>
+                <li><a href="#">Plant Pots & Troughs</a></li>
+                <li><a href="#">View All</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a class="inline-block p-5 border-b border-gray-300" href="#"
+                >Outdoor Lighting</a
+              >
+              <ul class="p-4 flex flex-col gap-3">
+                <li><a href="#">Decorative Outdoor Lights</a></li>
+                <li><a href="#">Outdoor Wall Lights</a></li>
+                <li><a href="#">Festoon Lights</a></li>
+                <li><a href="#">View All</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <a class="inline-block p-5 border-b border-gray-300" href="#"
+                >Outdoor Trends</a
+              >
+              <ul class="p-4 flex flex-col gap-3">
+                <li><a href="#">Tuscan Villa</a></li>
+                <li><a href="#">Industrial Garden</a></li>
+                <li><a href="#">Scandi Outdoor</a></li>
+                <li><a href="#">Modern Country</a></li>
+                <li><a href="#">Balinese Summer</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="p-6">
+            <img src="https://picsum.photos/id/237/200/250" alt="stock photo" />
+            <a class="inline-block text-center mt-4" href="#"
+              >OUTDOOR FURNITURE</a
+            >
+          </div>
+          <div class="p-6">
+            <img src="https://picsum.photos/id/238/200/250" alt="stock photo" />
+          </div>
         </div>
       </nav>
     </header>
     <!-- End Header -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="flex flex-col desktop:items-start desktop:flex-row">
+        <!-- Newsletter -->
+        <section
+          class="flex flex-col desktop:order-2 items-center text-[#59666e] font-thin bg-white m-4 mt-6 lg:w-[40%]"
+        >
+          <h3 class="pt-6 text-xl">Sign Up To Our Newsletter</h3>
+          <a href="#">Read Our Privacy Policy</a>
+          <form @submit.prevent="" class="flex flex-col w-full p-6">
+            <input
+              class="border border-gray-300 w-full p-3.5 mb-4 placeholder:text-gray-500"
+              type="text"
+              placeholder="name@emailaddress.co.uk"
+            />
+            <button
+              class="p-3.5 w-full bg-[#434d5b] rounded-sm text-white uppercase font-bold"
+              type="submit"
+            >
+              Sign Up
+            </button>
+          </form>
+        </section>
+        <!-- End Newsletter -->
+
+        <div
+          x-data="{
+            headerVisible:'',
+            toggleFooterHeader(header){
+              if(this.headerVisible===header)
+              this.headerVisible='';
+              else{ 
+                this.headerVisible=header
+              }
+            }
+        }"
+          class="flex flex-col md:grid md:grid-cols-4 md:gap-4 border-t border-x mx-4 md:mx-0 [&_h3~ul]:p-4 border-gray-400/50 [&>ul>li]:border-b [&>ul>li]:border-gray-400/50 [&_h3~ul]:border-t [&_h3~ul]:border-gray-400/50 md:border-none w-[96%] desktop:w-[60%] text-[#5f6b73] [&_h3]:text-[#6e7a82] [&_h3]:m-4 [&_h3]:font-semibold [&_h3]:text-[0.9rem] [&_li]:mb-2 [&_ul:last-child>li]:mb-0 [&_a]:text-sm [&_a]:font-extralight"
+        >
+          <ul>
+            <li
+              class="md:border-none"
+              @click="()=>toggleFooterHeader('CUSTOMERS')"
+            >
+              <h3>
+                CUSTOMERS
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8 -mr-3 inline float-right transition-transform md:hidden"
+                  :class="{'rotate-90':headerVisible==='CUSTOMERS'}"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </h3>
+              <ul
+                class="md:border-none origin-top duration-500 overflow-hidden"
+                x-transition:enter-start="scale-y-0"
+                x-transition:enter-end="scale-y-100"
+                x-transition:leave-start="scale-y-100"
+                x-transition:leave-end="scale-y-0"
+                x-show="headerVisible==='CUSTOMERS' || isScreenTablet || isScreenDesktop"
+              >
+                <li><a href="#">Your Account</a></li>
+                <li><a href="#">Create an Account</a></li>
+                <li><a href="#">Trade Customers</a></li>
+                <li><a href="#">Email Sign Up</a></li>
+                <li><a href="#">Request a Catalogue</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="#">Unsubscribe</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li
+              @click="()=>toggleFooterHeader('HOW CAN WE HELP?')"
+              class="md:border-none"
+            >
+              <h3>
+                HOW CAN WE HELP?
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8 -mr-3 inline float-right transition-transform md:hidden"
+                  :class="{'rotate-90':headerVisible==='HOW CAN WE HELP?'}"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </h3>
+              <ul
+                class="md:border-none origin-top duration-500 overflow-hidden"
+                x-transition:enter-start="scale-y-0"
+                x-transition:enter-end="scale-y-100"
+                x-transition:leave-start="scale-y-100"
+                x-transition:leave-end="scale-y-0"
+                x-show="headerVisible==='HOW CAN WE HELP?' || isScreenTablet || isScreenDesktop"
+                class="md:border-none"
+              >
+                <li><a href="#">Where's my Order?</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Delivery</a></li>
+                <li><a href="#">Returns</a></li>
+                <li><a href="#">Gift Vouchers</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Clearpay FAQ</a></li>
+                <li><a href="#">Klarna FAQ</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li
+              @click="()=>toggleFooterHeader('COX & COX')"
+              class="md:border-none"
+            >
+              <h3>
+                COX & COX<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8 -mr-3 inline float-right transition-transform md:hidden"
+                  :class="{'rotate-90':headerVisible==='COX & COX'}"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </h3>
+              <ul
+                class="md:border-none origin-top duration-500 overflow-hidden"
+                x-transition:enter-start="scale-y-0"
+                x-transition:enter-end="scale-y-100"
+                x-transition:leave-start="scale-y-100"
+                x-transition:leave-end="scale-y-0"
+                x-show="headerVisible==='COX & COX' || isScreenTablet || isScreenDesktop"
+                class="md:border-none"
+              >
+                <li><a href="#">About</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Refer a Friend</a></li>
+                <li><a href="#">Student Discount</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li
+              @click="()=>toggleFooterHeader('INSPIRATION')"
+              class="md:border-none"
+            >
+              <h3>
+                INSPIRATION<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8 -mr-3 inline float-right transition-transform md:hidden"
+                  :class="{'rotate-90':headerVisible==='INSPIRATION'}"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </h3>
+              <ul
+                class="md:border-none origin-top duration-500 overflow-hidden"
+                x-transition:enter-start="scale-y-0"
+                x-transition:enter-end="scale-y-100"
+                x-transition:leave-start="scale-y-100"
+                x-transition:leave-end="scale-y-0"
+                x-show="headerVisible==='INSPIRATION' || isScreenTablet || isScreenDesktop"
+                class="md:border-none"
+              >
+                <li><a href="#">Style Notes Blog</a></li>
+                <li><a href="#">Online Catalogue</a></li>
+                <li><a href="#">Outdoor Lookbook</a></li>
+                <li><a href="#">Easter Home</a></li>
+                <li><a href="#">Easy Season Updates</a></li>
+                <li><a href="#">Discover the Classics</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Last Footer Section -->
+      <div
+        class="flex flex-col items-center md:flex-row md:justify-between m-4 my-8 gap-6"
+      >
+        <div class="flex items-baseline md:flex-col">
+          <div class="text-gray-900 text-3xl md:text-lg font-regular">
+            0330 333 2123
+          </div>
+          <p class="text-sm text-[#383737] tracking-tight font-light">
+            MON-FRI 9<span class="text-xs">AM</span> - 5<span class="text-xs"
+              >PM</span
+            >
+          </p>
+        </div>
+        <div class="md:basis-96">
+          <img src="/footerLogos.png" alt="logos" />
+        </div>
+
+        <div class="flex gap-4">
+          <a href="#">
+            <!-- Facebook -->
+            <svg
+              class="w-6 h-6 fill-gray-600"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              fill="currentColor"
+            >
+              <path
+                d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
+              />
+            </svg>
+          </a>
+          <!-- Twitter -->
+          <a href="#">
+            <svg
+              class="w-6 h-6 fill-gray-600"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              fill="currentColor"
+            >
+              <path
+                d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+              />
+            </svg>
+          </a>
+
+          <!-- pinterest -->
+          <a href="#">
+            <svg
+              class="w-6 h-6 fill-gray-600"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 496 512"
+              fill="currentColor"
+            >
+              <path
+                d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"
+              />
+            </svg>
+          </a>
+          <!-- instagram -->
+          <a href="#">
+            <svg
+              class="w-6 h-6 fill-gray-600"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              fill="currentColor"
+            >
+              <path
+                d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <!-- END FOOTER -->
     <script type="module" src="/main.js"></script>
   </body>
 </html>
