@@ -10,6 +10,16 @@ export default {
         desktop: "1200px",
         tablet: "768px",
       },
+      fontFamily: {
+        baskerville: [
+          "Baskerville",
+          "Georgia",
+          "Times New Roman",
+          "Times",
+          "serif",
+        ],
+        helvetica: ["Helvetica", "Arial", "sans-serif"],
+      },
       keyframes: {
         slideRight: {
           "0%": { transform: "translateX(-100%)" },

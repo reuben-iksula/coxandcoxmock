@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Cox & Cox</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@glidejs/glide@^3.4.1/dist/css/glide.core.min.css"
+    />
   </head>
   <body
     x-data="{
@@ -39,46 +43,24 @@
           'Use code INTROAPRA for 20% off full price items',
           'Up to 70% off clearance'
         ],
+        action:'right',
         currentPromo:0,
-        previousPromo:null,
-
-        init(){
-          this.previousPromo=this.promos.length-1;
-        },
 
         handleRight(){
+          this.action='right';
           let promo=this.$refs.promo;
-          let prevPromo=this.$refs.prevpromo;
-          let change=false;
-         
-        
-        
-          setTimeout(()=>{
-          prevPromo.classList.remove('-left-[100%]');
-          prevPromo.classList.add('left-1/2');
-          prevPromo.classList.add('-translate-x-1/2');
           
-          promo.classList.remove('right-1/2');
-          promo.classList.add('-right-[100%]');
-
           if(this.currentPromo===this.promos.length-1){
             this.currentPromo=0;
           }else{
             this.currentPromo++;
           }
-
-          },500)
-          
-          
-
-         
+        
         },
         handleLeft(){
+          this.action='left';
           let promo=this.$refs.promo;
-          promo.classList.add('translate-x-96');
-          setTimeout(()=>{
-            promo.classList.remove('translate-x-96')
-          },250)
+          
           if(this.currentPromo===0){
             this.currentPromo=this.promos.length-1;
           }else{
@@ -86,9 +68,6 @@
           }
         }
     }"
-      x-init="$watch('currentPromo',(val,old)=>{
-      previousPromo=old;
-    })"
       class="flex justify-between bg-darkAccent p-[18px] text-sm font-medium"
     >
       <!-- left -->
@@ -118,8 +97,43 @@
       </div>
 
       <div class="block desktop:hidden text-gray-100">
-        <p>
-          <a
+        <div x-show="action==='right'" x-cloak>
+          <template x-for="promo in promos">
+            <p
+              class="absolute left-1/2 -translate-x-1/2"
+              :class="{'hidden':action==='left'}"
+              x-transition:enter="transition-transform duration-1000"
+              x-transition:enter-start="translate-x-[500%]"
+              x-transition:enter-end="-translate-x-1/2"
+              x-transition:leave="transition-transform duration-1000"
+              x-transition:leave-start="-translate-x-1/2"
+              x-transition:leave-end="-translate-x-[500%]"
+              x-show="promos[currentPromo]===promo"
+            >
+              <a href="#" x-text="promo" x-ref="promo" class=""></a>
+            </p>
+          </template>
+        </div>
+        <div x-show="action==='left'" x-cloak>
+          <template x-for="promo in promos">
+            <p
+              class="absolute left-1/2 -translate-x-1/2"
+              :class="{'hidden':action==='right'}"
+              x-transition:enter="transition-transform duration-1000"
+              x-transition:enter-start="-translate-x-[500%]"
+              x-transition:enter-end="-translate-x-1/2"
+              x-transition:leave="transition-transform duration-1000"
+              x-transition:leave-start="-translate-x-1/2"
+              x-transition:leave-end="translate-x-[500%]"
+              x-show="promos[currentPromo]===promo"
+            >
+              <a href="#" x-text="promo" x-ref="promo" class=""></a>
+            </p>
+          </template>
+        </div>
+        <!-- 
+            <p>
+            <a
             href="#"
             x-ref="prevpromo"
             x-text="promos[currentPromo]"
@@ -131,8 +145,8 @@
             href="#"
             x-text="promos[previousPromo]"
             class="absolute inline-block transition-[right] right-1/2 translate-x-1/2 ease-linear duration-500"
-          ></a>
-        </p>
+          ></a> 
+        </p>-->
       </div>
 
       <svg
@@ -258,7 +272,8 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-5 h-5 hidden absolute right-12 top-1/2 -translate-y-1/2 desktop:block text-gray-500 cursor-pointer"
+              fill="currentColor"
+              class="w-5 h-5 hidden absolute right-12 top-1/2 -translate-y-1/2 desktop:block text-gray-400 fill-gray-400 cursor-pointer"
             >
               <path
                 stroke-linecap="round"
@@ -355,7 +370,18 @@
       -->
       <nav
         x-data="{
-          activeNavLink:''
+          activeNavLink:'',
+          navItemToggle(item){
+            console.log(!this.isScreenDesktop)
+            if(this.activeNavLink===item && !this.isScreenDesktop)
+            {
+            this.activeNavLink='';
+            }
+            else
+            {
+              this.activeNavLink=item
+            }
+          }
         }"
         :class="isScreenDesktop?'visible':navMenu?'visible':'invisible'"
         class="w-[70%] h-full fixed top-0 z-10 desktop:animation-none desktop:static desktop:h-auto desktop:w-full bg-white border-gray-300 overflow-auto"
@@ -402,10 +428,8 @@
               />
             </svg>
           </li>
-          <!-- toggle -->
-          <li
-            @click="if(activeNavLink==='Outdoor' && !isScreenDesktop)activeNavLink='';else{activeNavLink='Outdoor'}"
-          >
+          <!-- navItemToggle -->
+          <li @click="()=>navItemToggle('Outdoor')">
             <a
               @mouseover="activeNavLink=$el.innerText"
               class="hover:border-b hover:border-black"
@@ -493,7 +517,8 @@
             </ul>
             <!-- accordian item end -->
           </li>
-          <li>
+          <!-- navItemToggle -->
+          <li @click="()=>navItemToggle('Seating')">
             <a
               @mouseover="activeNavLink=$el.innerText"
               class="hover:border-b hover:border-black"
@@ -514,7 +539,62 @@
                 d="M8.25 4.5l7.5 7.5-7.5 7.5"
               />
             </svg>
+            <!-- accordion item start -->
+            <ul
+              x-show="!isScreenDesktop && activeNavLink==='Seating'"
+              x-cloak
+              x-transition
+              class="border-l border-gray-400"
+            >
+              <li class="mr-4">
+                <a class="inline-block p-5 text-gray-700" href="#">Seating</a>
+
+                <ul class="p-4 flex flex-col gap-3">
+                  <li>
+                    <a href="#"> Stools </a>
+                  </li>
+                  <li>
+                    <a href="#"> Armchairs & Loveseats </a>
+                  </li>
+                  <li>
+                    <a href="#"> Dining Chairs </a>
+                  </li>
+                  <li>
+                    <a href="#"> Sofas </a>
+                  </li>
+                  <li>
+                    <a href="#"> Office Chairs </a>
+                  </li>
+                  <li>
+                    <a href="#"> Benches </a>
+                  </li>
+                </ul>
+
+                <ul class="p-4 flex flex-col gap-3">
+                  <li>
+                    <a href="#"> Occasional Chairs </a>
+                  </li>
+                  <li>
+                    <a href="#"> Sofa Beds </a>
+                  </li>
+                  <li>
+                    <a href="#"> Beanbags & Floor Cushions</a>
+                  </li>
+                  <li>
+                    <a href="#">Ottomans, Footstools & Pouffes </a>
+                  </li>
+                  <li>
+                    <a href="#"> Made to Order Collections </a>
+                  </li>
+                  <li>
+                    <a href="#"> View All </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <!-- accordion item end -->
           </li>
+
           <li>
             <a
               @mouseover="activeNavLink=$el.innerText"
@@ -812,6 +892,7 @@
             <li><a href="#">Orderline &#8212; 0330 333 2123</a></li>
           </ul>
         </div>
+        <!-- Outdoor hover -->
         <div
           x-show="activeNavLink==='Outdoor'"
           x-cloak
@@ -891,9 +972,526 @@
             <img src="https://picsum.photos/id/238/200/250" alt="stock photo" />
           </div>
         </div>
+        <!-- Seating hover -->
+        <div
+          x-show="activeNavLink==='Seating'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul class="col-span-2">
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#">Seating</a>
+              <div class="flex justify-between p-4 [&>ul>li]:p-2">
+                <ul>
+                  <li>
+                    <a href="#"> Stools </a>
+                  </li>
+                  <li>
+                    <a href="#"> Armchairs & Loveseats </a>
+                  </li>
+                  <li>
+                    <a href="#"> Dining Chairs </a>
+                  </li>
+                  <li>
+                    <a href="#"> Sofas </a>
+                  </li>
+                  <li>
+                    <a href="#"> Office Chairs </a>
+                  </li>
+                  <li>
+                    <a href="#"> Benches </a>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li>
+                    <a href="#"> Occasional Chairs </a>
+                  </li>
+                  <li>
+                    <a href="#"> Sofa Beds </a>
+                  </li>
+                  <li>
+                    <a href="#"> Beanbags & Floor Cushions</a>
+                  </li>
+                  <li>
+                    <a href="#">Ottomans, Footstools & Pouffes </a>
+                  </li>
+                  <li>
+                    <a href="#"> Made to Order Collections </a>
+                  </li>
+                  <li>
+                    <a href="#"> View All </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/239/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Stools</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/240/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Armchairs & Loveseats</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/241/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Dining chairs</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/242/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
       </nav>
     </header>
     <!-- End Header -->
+
+    <!-- Start Main -->
+    <main class="bg-white">
+      <div class="flex flex-wrap items-center bg-[#F1F1ED] lg:mt-16">
+        <section
+          class="flex flex-col items-center lg:items-start gap-4 w-full lg:w-1/2 p-6 lg:pl-20 lg:pr-8 pt-8 font-baskerville text-[#444]"
+          x-data="{
+        readMore:false,
+        paraContent:'',
+
+        init(){
+          this.paraContent=this.$refs.h1para.innerText;
+        },
+        paraHandler(para){
+          if(this.readMore){
+            para.innerText=this.paraContent;
+          }else if(this.isScreenDesktop){
+            para.innerText=this.paraContent.slice(0,150)
+          }else{
+            para.innerText=this.paraContent.slice(0,104)
+          }
+        }
+      }"
+        >
+          <h1 class="text-3xl lg:text-5xl">Tables</h1>
+          <div class="text-center lg:text-start">
+            <p class="inline" x-ref="h1para" x-effect=" paraHandler($el);">
+              A high-quality selection of sturdy and stylish tables from
+              practical side tables and desks – perfect for the home office – to
+              low, sleek coffee tables and space-saving nesting tables. Find the
+              perfect dining room table to suit your space and interior design,
+              then accent your hallways with slim, sophisticated console tables
+              before focusing on bedside tables and dressing tables for your
+              bedroom.
+            </p>
+            <button
+              class="inline relative min-w-fit text-[#444] font-normal"
+              @click="readMore=true"
+              :class="{'hidden':readMore}"
+            >
+              <span class="custom-underline"></span>
+              Read More
+            </button>
+          </div>
+          <button class="relative uppercase text-[#222]">
+            <span class="custom-underline"></span>
+            View All
+          </button>
+        </section>
+        <div class="w-full lg:w-1/2">
+          <img
+            class="w-full object-cover"
+            src="https://picsum.photos/id/1/500/300"
+            alt=""
+          />
+        </div>
+      </div>
+      <!-- Image Carousel -->
+      <div class="relative cursor-pointer" x-data="imgslider">
+        <div id="myGlide" class="glide">
+          <div data-glide-el="controls">
+            <button data-glide-dir="<" class="glide__arrow glide__arrow--left">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-8 h-8 cursor-pointer absolute z-10 left-0 top-1/2 -translate-y-1/2 bg-white"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+            <button data-glide-dir=">" class="glide__arrow glide__arrow--right">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-8 h-8 cursor-pointer absolute z-10 right-0 top-1/2 -translate-y-1/2 bg-white"
+                data-glide-dir=">"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="glide__track" data-glide-el="track">
+            <ul
+              class="glide__slides [&>li>img]:lg:w-full [&>li>span]:font-baskerville"
+            >
+              <li class="glide__slide">
+                <img src="https://picsum.photos/id/2/400/400" alt="" />
+                <span class="text-gray-900/90 text-lg">Dining Tables</span>
+              </li>
+              <li class="glide__slide">
+                <img src="https://picsum.photos/id/3/400/400" alt="" />
+                <span class="text-gray-900/90 text-lg">Desks</span>
+              </li>
+              <li class="glide__slide">
+                <img src="https://picsum.photos/id/4/400/400" alt="" />
+                <span class="text-gray-900/90 text-lg">Console Tables</span>
+              </li>
+              <li class="glide__slide">
+                <img src="https://picsum.photos/id/5/400/400" alt="" />
+                <span class="text-gray-900/90 text-lg">Side Tables</span>
+              </li>
+              <li class="glide__slide">
+                <img src="https://picsum.photos/id/6/400/400" alt="" />
+                <span class="text-gray-900/90 text-lg">Coffe Tables</span>
+              </li>
+              <li class="glide__slide">
+                <img src="https://picsum.photos/id/7/400/400" alt="" />
+                <span class="text-gray-900/90 text-lg">Nesting Tables</span>
+              </li>
+              <li class="glide__slide">
+                <img src="https://picsum.photos/id/8/400/400" alt="" />
+                <span class="text-gray-900/90 text-lg">Bedside Tables</span>
+              </li>
+              <li class="glide__slide">
+                <img src="https://picsum.photos/id/9/400/400" alt="" />
+                <span class="text-gray-900/90 text-lg"
+                  >Dressing Tables and Stools</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- End Image Carousel -->
+      <!-- Filter Div -->
+      <div
+        class="flex flex-col gap-4 py-8"
+        x-data="{
+          filterMode:5,
+        }"
+      >
+        <p class="text-center text-gray-700 text-sm">1-40 OF 125 PRODUCTS</p>
+
+        <div class="flex flex-wrap gap-4 justify-between p-8 text-gray-700">
+          <!-- view -->
+
+          <div class="relative">
+            <label for="viewProducts" class="uppercase text-gray-600 text-sm"
+              >View:</label
+            >
+
+            <select
+              name="viewProducts"
+              id="viewProducts"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
+            >
+              <option value="40">40</option>
+              <option value="80">80</option>
+            </select>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5 absolute right-2 bottom-1/2 translate-y-1/2 pointer-events-none"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </div>
+
+          <div class="flex gap-6 order-3 md:order-4">
+            <!-- switch modes-->
+            <div
+              class="flex items-center rounded-[0.4rem] border border-gray-700 overflow-hidden"
+            >
+              <a
+                class="py-3 px-4"
+                :class="{'bg-gray-700 text-white':filterMode===3}"
+                @click.prevent="filterMode=3"
+                href="#"
+                >3</a
+              >
+              <a
+                class="py-3 px-4"
+                :class="{'bg-gray-700 text-white':filterMode===5}"
+                @click.prevent="filterMode=5"
+                href="#"
+                >5</a
+              >
+            </div>
+            <!-- sort -->
+            <div class="relative">
+              <label for="sortProducts" class="uppercase text-gray-600 text-sm"
+                >sort by:</label
+              >
+              <select
+                name="sortProducts"
+                class="uppercase border border-black/50 rounded-sm p-3 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] outline-none appearance-none"
+                id="sortProducts"
+              >
+                <option value="relevance">relevance</option>
+                <option value="favourites">favourites</option>
+                <option value="productNameAZ">product name A-Z</option>
+                <option value="productNameZA">product name Z-A</option>
+                <option value="priceLowHigh">price Low - High</option>
+                <option class="uppercase" value="priceHighLow">
+                  price High - Low
+                </option>
+              </select>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-5 h-5 absolute right-2 bottom-1/2 translate-y-1/2 pointer-events-none"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- range -->
+          <div
+            class="w-full order-4 md:order-2 md:w-1/3 flex items-center justify-center"
+            x-data="{
+            pressed:false,
+            handleHover(){
+              console.log('ss')
+            }
+          }"
+            x-effect="console.log(pressed)"
+          >
+            <!-- <input
+              type="range"
+              class="range-slider w-1/2 appearance-none"
+              min="0"
+              max="100"
+              step="1"
+              value="0"
+            /> -->
+
+            <div class="w-1/2 h-2 bg-gray-700 relative">
+              <span
+                @mousedown="pressed=true"
+                @mouseup="pressed=false"
+                @mouseover="handleHover()"
+                class="absolute left-0 top-1/2 -translate-y-1/2 bg-white border border-black w-4 h-4 rounded-full"
+              ></span
+              ><span
+                @mousedown="pressed=true"
+                @mouseup="pressed=false"
+                class="absolute right-0 top-1/2 -translate-y-1/2 bg-white border border-black w-4 h-4 rounded-full"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Filter -->
+      <div
+        class="grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] md:grid-cols-5"
+      >
+        <div>
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/20/250/300':'https://picsum.photos/id/20/200/250'"
+            alt=""
+          />
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+            >Limewashed Parquet Dining Table</a
+          >
+          <p class="text-center text-lg text-gray-700">£1,550.00</p>
+        </div>
+        <div>
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/21/250/300':'https://picsum.photos/id/21/200/250'"
+            alt=""
+          />
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+            >Reclaimed Oak Console Table
+          </a>
+          <p class="text-center text-lg text-gray-700">£1,175.00</p>
+        </div>
+        <div class="relative">
+          <span class="absolute bg-gray-900 text-white p-2 top-0 right-0"
+            >New</span
+          >
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/22/250/300':'https://picsum.photos/id/22/200/250'"
+            alt=""
+          />
+
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+            >Glass Nesting Side Table</a
+          >
+          <p class="text-xs text-center mb-4">
+            Stock due LATE APRIL. Pre-order now.
+          </p>
+          <p class="text-center text-lg text-gray-700">£450.00</p>
+        </div>
+        <div>
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/23/250/300':'https://picsum.photos/id/23/200/250'"
+            alt=""
+          />
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+          >
+            Camille Dining Table - Natural</a
+          >
+          <p class="text-center text-lg text-gray-700">£1,350.00</p>
+        </div>
+        <div>
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/24/250/300':'https://picsum.photos/id/24/200/250'"
+            alt=""
+          />
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+            >Glass Display Console Table - Aged Bronze</a
+          >
+          <p class="text-center text-lg text-gray-700">£450.00</p>
+        </div>
+
+        <!-- --- -->
+        <div class="relative">
+          <span class="absolute bg-gray-900 text-white p-2 top-0 right-0"
+            >New</span
+          >
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/25/250/300':'https://picsum.photos/id/25/200/250'"
+            alt=""
+          />
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+            >Freja Dining Table - Rectangular
+          </a>
+          <p class="text-xs text-center mb-4">
+            Stock due LATE APRIL. Pre-order now.
+          </p>
+          <p class="text-center text-lg text-gray-700">£995.00</p>
+        </div>
+        <div>
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/21/250/300':'https://picsum.photos/id/21/200/250'"
+            alt=""
+          />
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+            >Industrial Iron Console Table
+          </a>
+          <p class="text-center text-lg text-gray-700">£525.00</p>
+        </div>
+        <div>
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/22/250/300':'https://picsum.photos/id/22/200/250'"
+            alt=""
+          />
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+            >Camille Display Console - Natural</a
+          >
+
+          <p class="text-center text-lg text-gray-700">£1,150.00</p>
+        </div>
+        <div>
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/23/250/300':'https://picsum.photos/id/23/200/250'"
+            alt=""
+          />
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+          >
+            Camille Dining Table - Natural</a
+          >
+          <p class="text-center text-lg text-gray-700">£1,350.00</p>
+        </div>
+        <div>
+          <img
+            class="mx-auto w-full"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/24/250/300':'https://picsum.photos/id/24/200/250'"
+            alt=""
+          />
+          <a
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            href="#"
+            >Glass Display Console Table - Aged Bronze</a
+          >
+          <p class="text-center text-lg text-gray-700">£450.00</p>
+        </div>
+      </div>
+      <!-- --- -->
+      <!-- Pagination div -->
+      <div></div>
+      <!-- Pagination -->
+    </main>
+    <!-- End Main -->
 
     <!-- Footer -->
     <footer>

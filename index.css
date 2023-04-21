@@ -4,6 +4,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .custom-underline {
+    @apply absolute w-full bottom-[0.3rem] bg-[#444] h-[0.01rem];
+  }
+  /* input[type="range"] {
+    overflow: hidden;
+
+    -webkit-appearance: none;
+    background-color: #000;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    cursor: ew-resize;
+    background: #777;
+    box-shadow: -170px 0 0 160px #777;
+  } */
+}
+
 body {
   /* font-family: "Baskerville", Georgia, "Times New Roman", Times, serif; "Cabin"*/
   font-family: Helvetica, Arial, sans-serif;
