@@ -8,30 +8,39 @@
   .custom-underline {
     @apply absolute w-full bottom-[0.3rem] bg-[#444] h-[0.01rem];
   }
-  /* input[type="range"] {
-    overflow: hidden;
-
-    -webkit-appearance: none;
-    background-color: #000;
-  }
-
-  input[type="range"]::-webkit-slider-runnable-track {
-  }
-
-  input[type="range"]::-webkit-slider-thumb {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    cursor: ew-resize;
-    background: #777;
-    box-shadow: -170px 0 0 160px #777;
-  } */
 }
 
 body {
   /* font-family: "Baskerville", Georgia, "Times New Roman", Times, serif; "Cabin"*/
   font-family: Helvetica, Arial, sans-serif;
   letter-spacing: 0.5px;
+}
+
+/* range */
+
+.noUi-base .noUi-connect {
+  background: #434d5b;
+}
+
+#double-thumb-range.noUi-horizontal {
+  height: 0.75rem;
+}
+
+#double-thumb-range.noUi-target {
+  background: #dde0e2;
+  width: 100%;
+}
+
+.noUi-base .noUi-origin .noUi-handle {
+  border-radius: 50%;
+  width: 1.2rem;
+  height: 1.2rem;
+  top: -0.3rem;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+.noUi-base .noUi-origin .noUi-handle::before,
+.noUi-base .noUi-origin .noUi-handle::after {
+  display: none;
 }
 
 [x-cloak] {

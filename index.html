@@ -1065,7 +1065,7 @@
     <main class="bg-white">
       <div class="flex flex-wrap items-center bg-[#F1F1ED] lg:mt-16">
         <section
-          class="flex flex-col items-center lg:items-start gap-4 w-full lg:w-1/2 p-6 lg:pl-20 lg:pr-8 pt-8 font-baskerville text-[#444]"
+          class="flex flex-col items-center lg:items-start gap-4 w-full lg:w-[40%] p-6 lg:pl-20 lg:pr-8 pt-8 font-baskerville text-[#444]"
           x-data="{
         readMore:false,
         paraContent:'',
@@ -1109,16 +1109,16 @@
             View All
           </button>
         </section>
-        <div class="w-full lg:w-1/2">
+        <div class="w-full lg:w-[60%]">
           <img
             class="w-full object-cover"
-            src="https://picsum.photos/id/1/500/300"
+            src="https://picsum.photos/id/1/500/350"
             alt=""
           />
         </div>
       </div>
       <!-- Image Carousel -->
-      <div class="relative cursor-pointer" x-data="imgslider">
+      <div class="relative cursor-pointer px-4" x-data="imgslider">
         <div id="myGlide" class="glide">
           <div data-glide-el="controls">
             <button data-glide-dir="<" class="glide__arrow glide__arrow--left">
@@ -1128,7 +1128,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 cursor-pointer absolute z-10 left-0 top-1/2 -translate-y-1/2 bg-white"
+                class="w-8 h-8 cursor-pointer absolute z-10 left-0 top-1/2 -translate-y-[70%] bg-white"
               >
                 <path
                   stroke-linecap="round"
@@ -1144,7 +1144,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 cursor-pointer absolute z-10 right-0 top-1/2 -translate-y-1/2 bg-white"
+                class="w-8 h-8 cursor-pointer absolute z-10 right-0 top-1/2 -translate-y-[70%] bg-white"
                 data-glide-dir=">"
               >
                 <path
@@ -1203,14 +1203,18 @@
         class="flex flex-col gap-4 py-8"
         x-data="{
           filterMode:5,
+          rangeLeft:'',
+          rangeRight:'',
         }"
       >
         <p class="text-center text-gray-700 text-sm">1-40 OF 125 PRODUCTS</p>
 
-        <div class="flex flex-wrap gap-4 justify-between p-8 text-gray-700">
-          <!-- view -->
+        <div
+          class="flex flex-wrap md:flex-nowrap gap-4 justify-between p-8 text-gray-700"
+        >
+          <!-- view number-->
 
-          <div class="relative">
+          <div class="hidden md:flex items-center gap-2 relative">
             <label for="viewProducts" class="uppercase text-gray-600 text-sm"
               >View:</label
             >
@@ -1240,10 +1244,10 @@
             </svg>
           </div>
 
-          <div class="flex gap-6 order-3 md:order-4">
+          <div class="flex items-center gap-6 order-3 md:order-4 ml-auto">
             <!-- switch modes-->
             <div
-              class="flex items-center rounded-[0.4rem] border border-gray-700 overflow-hidden"
+              class="hidden md:flex items-center rounded-[0.4rem] border border-gray-700 overflow-hidden"
             >
               <a
                 class="py-3 px-4"
@@ -1261,23 +1265,21 @@
               >
             </div>
             <!-- sort -->
-            <div class="relative">
+            <div class="relative md:flex items-center gap-2">
               <label for="sortProducts" class="uppercase text-gray-600 text-sm"
                 >sort by:</label
               >
               <select
                 name="sortProducts"
-                class="uppercase border border-black/50 rounded-sm p-3 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] outline-none appearance-none"
+                class="uppercase border border-black/50 rounded-sm pl-3 pr-8 py-3 md:px-2 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] outline-none appearance-none"
                 id="sortProducts"
               >
-                <option value="relevance">relevance</option>
-                <option value="favourites">favourites</option>
-                <option value="productNameAZ">product name A-Z</option>
-                <option value="productNameZA">product name Z-A</option>
-                <option value="priceLowHigh">price Low - High</option>
-                <option class="uppercase" value="priceHighLow">
-                  price High - Low
-                </option>
+                <option value="relevance">RELEVANCE</option>
+                <option value="favourites">FAVOURITES</option>
+                <option value="productNameAZ">PRODUCT NAME A-Z</option>
+                <option value="productNameZA">PRODUCT NAME Z-A</option>
+                <option value="priceLowHigh">PRICE LOW-HIGH</option>
+                <option value="priceHighLow">PRICE HIGH-LOW</option>
               </select>
 
               <svg
@@ -1299,41 +1301,23 @@
 
           <!-- range -->
           <div
-            class="w-full order-4 md:order-2 md:w-1/3 flex items-center justify-center"
-            x-data="{
-            pressed:false,
-            handleHover(){
-              console.log('ss')
-            }
-          }"
-            x-effect="console.log(pressed)"
+            class="w-[75%] mx-auto self-center md:justify-self-end order-4 md:order-2 md:w-[40%] mt-4 md:m-0 md:ml-auto flex items-center justify-center"
+            x-data="doubleThumbRange"
           >
-            <!-- <input
-              type="range"
-              class="range-slider w-1/2 appearance-none"
-              min="0"
-              max="100"
-              step="1"
-              value="0"
-            /> -->
-
-            <div class="w-1/2 h-2 bg-gray-700 relative">
-              <span
-                @mousedown="pressed=true"
-                @mouseup="pressed=false"
-                @mouseover="handleHover()"
-                class="absolute left-0 top-1/2 -translate-y-1/2 bg-white border border-black w-4 h-4 rounded-full"
-              ></span
-              ><span
-                @mousedown="pressed=true"
-                @mouseup="pressed=false"
-                class="absolute right-0 top-1/2 -translate-y-1/2 bg-white border border-black w-4 h-4 rounded-full"
-              ></span>
-            </div>
+            <span
+              class="mr-4 text-xs"
+              x-html="`<span class='text-sm'>£</span>${Math.floor(vals[0])}`"
+            ></span>
+            <div id="double-thumb-range" x-ref="doubleThumbRange"></div>
+            <span
+              class="ml-6 text-xs"
+              x-html="`<span class='text-sm'>£</span>${Math.floor(vals[1])}`"
+            ></span>
           </div>
         </div>
       </div>
       <!-- End Filter -->
+      <!-- product list -->
       <div
         class="grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] md:grid-cols-5"
       >
@@ -1346,9 +1330,11 @@
           <a
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
-            >Limewashed Parquet Dining Table</a
+            ><strong class="font-medium"
+              >Limewashed Parquet Dining Table</strong
+            ></a
           >
-          <p class="text-center text-lg text-gray-700">£1,550.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">£1,550.00</p>
         </div>
         <div>
           <img
@@ -1359,9 +1345,9 @@
           <a
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
-            >Reclaimed Oak Console Table
+            ><strong class="font-medium">Reclaimed Oak Console Table</strong>
           </a>
-          <p class="text-center text-lg text-gray-700">£1,175.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">£1,175.00</p>
         </div>
         <div class="relative">
           <span class="absolute bg-gray-900 text-white p-2 top-0 right-0"
@@ -1376,12 +1362,12 @@
           <a
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
-            >Glass Nesting Side Table</a
+            ><strong class="font-medium">Glass Nesting Side Table</strong></a
           >
-          <p class="text-xs text-center mb-4">
+          <p class="text-sm text-gray-700 text-center mb-4">
             Stock due LATE APRIL. Pre-order now.
           </p>
-          <p class="text-center text-lg text-gray-700">£450.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">£450.00</p>
         </div>
         <div>
           <img
@@ -1393,9 +1379,11 @@
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
           >
-            Camille Dining Table - Natural</a
+            <strong class="font-medium">
+              Camille Dining Table - Natural</strong
+            ></a
           >
-          <p class="text-center text-lg text-gray-700">£1,350.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">£1,350.00</p>
         </div>
         <div>
           <img
@@ -1406,9 +1394,11 @@
           <a
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
-            >Glass Display Console Table - Aged Bronze</a
+            ><strong class="font-medium"
+              >Glass Display Console Table - Aged Bronze</strong
+            ></a
           >
-          <p class="text-center text-lg text-gray-700">£450.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">£450.00</p>
         </div>
 
         <!-- --- -->
@@ -1424,12 +1414,14 @@
           <a
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
-            >Freja Dining Table - Rectangular
+            ><strong class="font-medium"
+              >Freja Dining Table - Rectangular</strong
+            >
           </a>
-          <p class="text-xs text-center mb-4">
+          <p class="text-sm text-gray-700 text-center mb-4">
             Stock due LATE APRIL. Pre-order now.
           </p>
-          <p class="text-center text-lg text-gray-700">£995.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">£995.00</p>
         </div>
         <div>
           <img
@@ -1440,9 +1432,9 @@
           <a
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
-            >Industrial Iron Console Table
+            ><strong class="font-medium">Industrial Iron Console Table</strong>
           </a>
-          <p class="text-center text-lg text-gray-700">£525.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">£525.00</p>
         </div>
         <div>
           <img
@@ -1453,10 +1445,16 @@
           <a
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
-            >Camille Display Console - Natural</a
+            ><strong class="font-medium"
+              >Mila Side Tables - Charcoal
+            </strong></a
           >
 
-          <p class="text-center text-lg text-gray-700">£1,150.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">
+            <span class="text-xs uppercase text-gray-500 align-middle"
+              >FROM &nbsp;</span
+            >£97.50
+          </p>
         </div>
         <div>
           <img
@@ -1468,9 +1466,11 @@
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
           >
-            Camille Dining Table - Natural</a
+            <strong class="font-medium">
+              Camille Display Console - Natural
+            </strong></a
           >
-          <p class="text-center text-lg text-gray-700">£1,350.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">£1,150.00</p>
         </div>
         <div>
           <img
@@ -1481,15 +1481,338 @@
           <a
             class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
             href="#"
-            >Glass Display Console Table - Aged Bronze</a
+            ><strong class="font-medium"
+              >Salcombe Dining Table - Rectangular Extendable
+            </strong></a
           >
-          <p class="text-center text-lg text-gray-700">£450.00</p>
+          <p class="text-center text-lg text-gray-700 text-[22px]">£925.00</p>
         </div>
       </div>
       <!-- --- -->
       <!-- Pagination div -->
-      <div></div>
-      <!-- Pagination -->
+      <div
+        x-data="{
+        pages: Array.from({ length: 10 }, (_, i) => i + 1),
+        slide: [],
+        active: null,
+        click: 0,
+          init() {
+            this.updateSlide();
+          },
+
+          // The `updateSlide()` method calculates the start and end index of the current slide
+         // based on the current `click` value, and updates the `slide` and `active` properties accordingly.
+
+          updateSlide() {
+            const startIndex = this.click;
+            const endIndex = Math.min(this.click + 4, this.pages.length);
+            this.slide = this.pages.slice(startIndex, endIndex);
+            this.active = this.slide[0];
+          },
+          
+         // The `handlePaginationRight()` method is called when the user clicks the `next` button.
+          // If there are at least 5 pages left after the current `click` position,
+          // the `click` value is incremented by 5 and the `slide` and `active` properties are updated.
+          // If there are fewer than 5 pages left, the `click` value is set to the last page
+          // and the `slide` and `active` properties are updated.
+
+          handlePaginationRight() {
+            if (this.click + 5 < this.pages.length) {
+              this.click += 5;
+              this.updateSlide();
+            } else if (this.click < this.pages.length - 1) {
+              this.click = this.pages.length - 1;
+              this.updateSlide();
+            }
+          },
+        
+          handlePaginationLeft() {
+            if (this.click - 5 >= 0) {
+              this.click -= 5;
+              this.updateSlide();
+            } else if (this.click > 0) {
+              this.click = 0;
+              this.updateSlide();
+            }
+          },
+
+          viewProductValue:'40',
+        }"
+        class="pt-16 pb-8 px-4 md:flex justify-between items-center flex-col md:flex-row"
+      >
+        <p
+          class="order-2 justify-self-center text-black/80 text-center uppercase text-xs md:text-sm"
+        >
+          1-40 of 126 Products
+        </p>
+        <!-- view products desktop -->
+        <div class="hidden md:block order-1 max-w-max relative">
+          <label for="viewProducts" class="uppercase text-black/80 text-sm"
+            >View:</label
+          >
+
+          <select
+            name="viewProducts"
+            id="viewProducts"
+            x-model="viewProductValue"
+            class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
+          >
+            <option value="40">40</option>
+            <option value="80">80</option>
+          </select>
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5 absolute right-2 bottom-1/2 translate-y-1/2 pointer-events-none"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+            />
+          </svg>
+        </div>
+        <!-- pagination desktop -->
+        <div class="order-3 hidden md:block">
+          <ul class="flex border border-black/50 text-black/60 rounded-lg">
+            <li
+              class="cursor-pointer border-y rounded-tl-lg rounded-bl-lg border-black/20 px-2 py-3"
+              :class="{'hidden':click===0}"
+              @click="handlePaginationLeft"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </li>
+            <template x-for="page in slide">
+              <li
+                class="cursor-pointer border-y border-l border-black/20 px-4 py-3"
+                :class="{'text-black':active===page}"
+                @click="active=page"
+                x-text="page"
+              ></li
+            ></template>
+            <li
+              class="cursor-pointer border-y border-x rounded-tr-lg rounded-br-lg border-black/20 px-2 py-3"
+              @click="handlePaginationRight"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </li>
+          </ul>
+        </div>
+        <!-- mobile parts -->
+        <div
+          class="flex md:hidden order-2 gap-8 items-center justify-center mt-8"
+        >
+          <div class="max-w-max relative">
+            <label for="viewProducts" class="uppercase text-black/80 text-sm"
+              >View:</label
+            >
+
+            <select
+              name="viewProducts"
+              id="viewProducts"
+              x-model="viewProductValue"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
+            >
+              <option value="40">40</option>
+              <option value="80">80</option>
+            </select>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5 absolute right-2 bottom-1/2 translate-y-1/2 pointer-events-none"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </div>
+          <!-- pagination -->
+
+          <div>
+            <ul class="flex border border-black/50 text-black/60 rounded-lg">
+              <li
+                class="cursor-pointer border-y rounded-tl-lg rounded-bl-lg border-black/20 px-2 py-3"
+                :class="{'hidden':click===0}"
+                @click="handlePaginationLeft"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="3"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </li>
+              <template x-for="page in slide">
+                <li
+                  class="cursor-pointer border-y border-l border-black/20 px-4 py-3"
+                  :class="{'text-black':active===page}"
+                  @click="active=page"
+                  x-text="page"
+                ></li
+              ></template>
+              <li
+                class="cursor-pointer border-y border-x rounded-tr-lg rounded-br-lg border-black/20 px-2 py-3"
+                @click="handlePaginationRight"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="3"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </li>
+            </ul>
+          </div>
+          <!-- pagination desktop -->
+        </div>
+      </div>
+      <!-- Pagination div-->
+
+      <!-- hand picked -->
+      <section class="border-t border-black/10 mx-4 pt-4 pb-16">
+        <h3 class="uppercase py-4 font-medium text-black/80 text-sm md:text-xl">
+          HAND PICKED FOR YOU
+        </h3>
+
+        <div
+          class="grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] md:grid-cols-5"
+        >
+          <div>
+            <img
+              class="mx-auto w-full"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/20/250/300':'https://picsum.photos/id/20/200/250'"
+              alt=""
+            />
+            <a
+              class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+              href="#"
+              ><strong class="font-medium"
+                >Freja Dining Table - Round</strong
+              ></a
+            >
+            <p class="text-center text-lg text-gray-700 text-[22px]">
+              £1,050.00
+            </p>
+          </div>
+          <div>
+            <img
+              class="mx-auto w-full"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/21/250/300':'https://picsum.photos/id/21/200/250'"
+              alt=""
+            />
+            <a
+              class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+              href="#"
+              ><strong class="font-medium"
+                >Two Glass Topped Nesting Tables
+              </strong>
+            </a>
+            <p class="text-center text-lg text-gray-700 text-[22px]">£350.00</p>
+          </div>
+          <div>
+            <img
+              class="mx-auto w-full"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/22/250/300':'https://picsum.photos/id/22/200/250'"
+              alt=""
+            />
+
+            <a
+              class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+              href="#"
+              ><strong class="font-medium">Corinth Dining Table </strong></a
+            >
+
+            <p class="text-center text-lg text-gray-700 text-[22px]">
+              £2,695.00
+            </p>
+          </div>
+          <div>
+            <img
+              class="mx-auto w-full"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/23/250/300':'https://picsum.photos/id/23/200/250'"
+              alt=""
+            />
+            <a
+              class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+              href="#"
+            >
+              <strong class="font-medium">
+                Camille Dining Table - Natural</strong
+              ></a
+            >
+            <p class="text-center text-lg text-gray-700 text-[22px]">
+              £1,350.00
+            </p>
+          </div>
+          <div>
+            <img
+              class="mx-auto w-full"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/24/250/300':'https://picsum.photos/id/24/200/250'"
+              alt=""
+            />
+            <a
+              class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+              href="#"
+              ><strong class="font-medium"
+                >Glass Display Console Table - Aged Bronze</strong
+              ></a
+            >
+            <p class="text-center text-lg text-gray-700 text-[22px]">£450.00</p>
+          </div>
+        </div>
+      </section>
     </main>
     <!-- End Main -->
 

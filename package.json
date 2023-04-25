@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@glidejs/glide": "^3.6.0",
-    "alpinejs": "^3.12.0"
+    "alpinejs": "^3.12.0",
+    "nouislider": "^15.7.0"
   }
 }
