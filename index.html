@@ -859,28 +859,6 @@
               />
             </svg>
           </li>
-          <li>
-            <a
-              @mouseover="activeNavLink=$el.innerText"
-              class="hover:border-b hover:border-black"
-              href="#"
-              >Gift Vouchers</a
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-8 h-8 -mr-3 inline float-right"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2.5"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </li>
         </ul>
         <div
           class="desktop:hidden mt-8 p-4 text-[#444] bg-[#eaedef] font-medium"
@@ -1054,6 +1032,770 @@
           <ul>
             <li class="mt-6">
               <img src="https://picsum.photos/id/242/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- tables hover -->
+        <div
+          x-show="activeNavLink==='Tables'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#">Tables</a>
+              <div>
+                <ul class="p-4 flex flex-col gap-3">
+                  <li><a href="#">Dining Tables</a></li>
+                  <li><a href="#">Desks</a></li>
+                  <li><a href="#">Console Tables</a></li>
+                  <li><a href="#">Side Tables</a></li>
+                  <li><a href="#">Coffee Tables</a></li>
+                  <li><a href="#">Nesting Tables</a></li>
+                  <li><a href="#">Bedside Tables</a></li>
+                  <li><a href="#">Dressing Tables & Stools</a></li>
+                  <li><a href="#">View All</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/30/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Dining Tables</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/31/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Desks</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/32/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Side Tables</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/33/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Console Tables</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/34/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- storage hover -->
+        <div
+          x-show="activeNavLink==='Storage'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul class="col-span-2">
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#">Storage</a>
+              <div class="flex justify-between p-4 [&>ul>li]:p-2">
+                <ul>
+                  <li><a href="#">Sideboards</a></li>
+                  <li><a href="#">Chests of Drawers</a></li>
+                  <li><a href="#">Bookcases & Shelf Units</a></li>
+                  <li><a href="#">Cabinets</a></li>
+                  <li><a href="#">Media Units</a></li>
+                  <li><a href="#">Shoe Storage</a></li>
+                  <li><a href="#">Larders & Dressers</a></li>
+                  <li><a href="#">Shelves</a></li>
+                  <li><a href="#">Bags & Baskets</a></li>
+                </ul>
+
+                <ul>
+                  <li><a href="#"> Clothes Rails & Screens</a></li>
+                  <li><a href="#"> Laundry Baskets</a></li>
+                  <li><a href="#"> Wine Racks & Kitchen Storage</a></li>
+                  <li><a href="#"> Hooks & Hook Racks</a></li>
+                  <li><a href="#"> Coat & Umbrella Stands</a></li>
+                  <li><a href="#"> Drinks Trolleys</a></li>
+                  <li><a href="#"> Kitchen Islands & Units</a></li>
+                  <li><a href="#"> Wardrobes</a></li>
+                  <li><a href="#"> View All</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/35/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >SIDEBOARDS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/36/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >CHEST OF DRAWERS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/37/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >BOOKCASES & SHELF UNITS</a
+            >
+          </ul>
+
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/38/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- bedroom hover -->
+        <div
+          x-show="activeNavLink==='Bedroom'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul class="col-span-2">
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#">Bedroom</a>
+              <div class="flex justify-between p-4 [&>ul>li]:p-2">
+                <ul>
+                  <li><a href="#"> Bedside Tables</a></li>
+                  <li><a href="#"> Beds, Headboards & Mattresses</a></li>
+                  <li><a href="#"> Dressing Tables & Stools</a></li>
+                  <li><a href="#"> Wardrobes</a></li>
+                  <li><a href="#"> Chests of Drawers</a></li>
+                  <li><a href="#"> Quilts & Bedspreads</a></li>
+                </ul>
+
+                <ul>
+                  <li><a href="#">Bedside Lights</a></li>
+                  <li><a href="#">Laundry Baskets</a></li>
+                  <li><a href="#">Sofa Beds</a></li>
+                  <li><a href="#">Clothes Rails & Screens</a></li>
+                  <li><a href="#">Cushions</a></li>
+                  <li><a href="#">View All</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/39/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >BEDSIDE TABLES</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/40/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >BEDS, HEADBOARDS & MATTRESSES</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/41/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >DRESSING TABLES AND STOOLS</a
+            >
+          </ul>
+
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/42/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- mirrors hover -->
+        <div
+          x-show="activeNavLink==='Mirrors'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#">Mirrors</a>
+              <div>
+                <ul class="p-4 flex flex-col gap-3">
+                  <li><a href="#">Wall Mirrors</a></li>
+                  <li><a href="#">Full Length Mirrors</a></li>
+                  <li><a href="#">Bathroom Mirrors</a></li>
+                  <li><a href="#">Round Mirrors</a></li>
+                  <li><a href="#">Decorative Mirrors</a></li>
+                  <li><a href="#">Table Mirrors</a></li>
+                  <li><a href="#">Outdoor Garden Mirrors</a></li>
+                  <li><a href="#">View All</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/43/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Wall mirrors</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/44/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Full length mirror</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/32/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Round Mirrors</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/33/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Bathroom mirrors</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/34/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- Lighting hover -->
+        <div
+          x-show="activeNavLink==='Lighting'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li class="w-full pr-4">
+              <a
+                class="w-full inline-block p-5 border-b border-gray-300"
+                href="#"
+                >Lighting</a
+              >
+
+              <ul class="p-4 flex flex-col gap-3">
+                <li><a href="#">Pendants</a></li>
+                <li><a href="#">Floor Lamps</a></li>
+                <li><a href="#">Desk Lamps</a></li>
+                <li><a href="#">Wall Lights</a></li>
+                <li><a href="#">Table Lamps</a></li>
+                <li><a href="#">Bedside Lights</a></li>
+                <li>
+                  <a href="#">Chandeliers & Decorative Lighting</a>
+                </li>
+                <li><a href="#">Shades</a></li>
+                <li><a href="#">View All</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li class="w-full">
+              <a
+                class="w-full inline-block p-5 border-b border-gray-300"
+                href="#"
+                >Outdoor Lighting</a
+              >
+
+              <ul class="p-4 flex flex-col gap-3">
+                <li><a href="#">Decorative Outdoor Lights</a></li>
+                <li><a href="#">Outdoor Wall Lights</a></li>
+                <li><a href="#">Festoon Lights</a></li>
+                <li><a href="#">View All</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/45/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >Pendants</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/46/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >TABLE LAMPS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/47/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >WALL LAMPS</a
+            >
+          </ul>
+
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/42/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- Accessories hover -->
+        <div
+          x-show="activeNavLink==='Accessories'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul class="col-span-2">
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#"
+                >Accessories</a
+              >
+              <div class="flex justify-between p-4 [&>ul>li]:p-2">
+                <ul>
+                  <li><a href="#">Vases</a></li>
+                  <li><a href="#">Ornaments</a></li>
+                  <li><a href="#">Clocks</a></li>
+                  <li><a href="#">Bowls, Dishes & Trinket Boxes</a></li>
+                  <li><a href="#">Kitchen Accessories & Tableware</a></li>
+                  <li><a href="#">Indoor Planting</a></li>
+                  <li><a href="#">Pet</a></li>
+                  <li><a href="#">Candle Holders</a></li>
+                  <li><a href="#">Faux Plants & Flowers</a></li>
+                </ul>
+
+                <ul>
+                  <li><a href="#">Wall Art</a></li>
+                  <li><a href="#">Fireside</a></li>
+                  <li><a href="#">Bathroom</a></li>
+                  <li><a href="#">Doormats</a></li>
+                  <li><a href="#">Hardware</a></li>
+                  <li><a href="#">Door Furniture</a></li>
+                  <li><a href="#">Office Accessories</a></li>
+                  <li><a href="#">Hardware</a></li>
+                  <li><a href="#">Door Furniture</a></li>
+                  <li><a href="#">View All</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/50/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >VASES</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/51/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >INDOOR PLANTING</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/52/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >WALL ART</a
+            >
+          </ul>
+
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/53/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- soft furnishing hover -->
+        <div
+          x-show="activeNavLink==='Soft Furnishings'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#"
+                >Soft Furnishings</a
+              >
+              <div>
+                <ul class="p-4 flex flex-col gap-3">
+                  <li><a href="#">Cushions</a></li>
+                  <li><a href="#">Throws</a></li>
+                  <li><a href="#">Quilts & Bedspreads</a></li>
+                  <li><a href="#">Sheepskin & Faux Fur</a></li>
+                  <li><a href="#">Rugs</a></li>
+                  <li><a href="#">Runners</a></li>
+                  <li><a href="#">Sheepskin Rugs & Hides</a></li>
+                  <li><a href="#">Pouffes, Beanbags & Floor Cushions</a></li>
+                  <li><a href="#">View All</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/54/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >CUSHIONS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/55/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >RUGS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/56/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >THROWS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/57/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >SHEEPSKIN & FAUX FUR</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/58/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- rugs hover -->
+        <div
+          x-show="activeNavLink==='Rugs'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#">Rugs</a>
+              <div>
+                <ul class="p-4 flex flex-col gap-3">
+                  <li><a href="#">Rugs</a></li>
+                  <li><a href="#">Runners</a></li>
+                  <li><a href="#">Sheepskin Rugs & Hides</a></li>
+                  <li><a href="#">Doormats</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/59/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >RUGS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/60/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >RUNNERS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/61/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >DOORMATS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/62/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >SHEEPSKIN RUGS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/63/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- shop by room hover-->
+        <div
+          x-show="activeNavLink==='Shop By Room'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#"
+                >Shop By Room</a
+              >
+              <div>
+                <ul class="p-4 flex flex-col gap-3">
+                  <li><a href="#">Bedroom</a></li>
+                  <li><a href="#">Home Office</a></li>
+                  <li><a href="#">Kitchen</a></li>
+                  <li><a href="#">Lounge</a></li>
+                  <li><a href="#">Dining</a></li>
+                  <li><a href="#">Hallway</a></li>
+                  <li><a href="#">Utility</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/64/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >HOME OFFICE</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/65/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >LOUNGE</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/66/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >HALLWAY</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/67/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >DINING ROOM</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/68/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- gifts hover -->
+
+        <div
+          x-show="activeNavLink==='Gifts'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#">Gifts</a>
+              <div>
+                <ul class="p-4 flex flex-col gap-3">
+                  <li><a href="#">Gifts Ideas</a></li>
+                  <li><a href="#">Gift Vouchers</a></li>
+                  <li><a href="#">View All</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/69/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >GIFT VOUCHERS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/70/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >GIFTS UNDER £50</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/71/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >GIFTS FOR PET LOVERS
+            </a>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/72/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >LUXURY GIFTS</a
+            >
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/68/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- Inspiration hover -->
+        <div
+          x-show="activeNavLink==='Inspiration'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li class="w-full pr-4">
+              <a
+                class="w-full inline-block p-5 border-b border-gray-300"
+                href="#"
+                >Inspiration</a
+              >
+
+              <ul class="p-4 flex flex-col gap-3">
+                <li><a href="#">Style Notes Blog</a></li>
+                <li><a href="#">Online Catalogue</a></li>
+                <li><a href="#">Outdoor Lookbook</a></li>
+                <li><a href="#">Easter Home</a></li>
+                <li><a href="#">Easy Season Updates</a></li>
+                <li><a href="#">Discover the Classics</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li class="w-full pr-4">
+              <a
+                class="w-full inline-block p-5 border-b border-gray-300"
+                href="#"
+                >Trends</a
+              >
+
+              <ul class="p-4 flex flex-col gap-3">
+                <li><a href="#">Faded Elegance</a></li>
+                <li><a href="#">French Blue</a></li>
+                <li><a href="#">Industrial Loft</a></li>
+                <li><a href="#">New Neutral</a></li>
+                <li><a href="#">Scandi</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li class="w-full pr-4">
+              <a
+                class="w-full inline-block p-5 border-b border-gray-300"
+                href="#"
+                >Outdoor Trends</a
+              >
+
+              <ul class="p-4 flex flex-col gap-3">
+                <li><a href="#">Tuscan Villa</a></li>
+                <li><a href="#">Industrial Garden</a></li>
+                <li><a href="#">Scandi Outdoor</a></li>
+                <li><a href="#">Modern Country</a></li>
+                <li><a href="#">Balinese Summer</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/45/200/250" alt="stock img" />
+            </li>
+          </ul>
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/46/200/250" alt="stock img" />
+            </li>
+            <a href="#" class="block text-center mt-2 font-medium uppercase"
+              >THE CLASSICS</a
+            >
+          </ul>
+
+          <ul>
+            <li class="mt-6">
+              <img src="https://picsum.photos/id/42/200/250" alt="stock img" />
+            </li>
+          </ul>
+        </div>
+
+        <!-- clearance hover -->
+        <div
+          x-show="activeNavLink==='Clearance'"
+          x-cloak
+          x-on:mouseleave="activeNavLink=''"
+          class="grid grid-cols-6 text-[#444] text-sm"
+        >
+          <ul>
+            <li class="mr-4">
+              <a class="block p-5 border-b border-gray-300" href="#"
+                >Clearance</a
+              >
+              <div>
+                <ul class="p-4 flex flex-col gap-3">
+                  <li><a href="#">25% Off</a></li>
+                  <li><a href="#">35% Off</a></li>
+                  <li><a href="#">50% Off</a></li>
+                  <li><a href="#">70% Off</a></li>
+                  <li><a href="#">View All</a></li>
+                </ul>
+              </div>
             </li>
           </ul>
         </div>
