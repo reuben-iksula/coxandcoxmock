@@ -68,7 +68,7 @@
           }
         }
     }"
-      class="flex justify-between bg-darkAccent p-[18px] text-sm font-medium"
+      class="relative flex justify-between items-center bg-darkAccent desktop:text-base text-sm desktop:leading-[55px] desktop:min-h-[55px] font-medium h-auto min-h-[45px]"
     >
       <!-- left -->
       <svg
@@ -87,25 +87,25 @@
         />
       </svg>
       <div
-        class="hidden w-full px-24 text-gray-100 desktop:flex desktop:justify-between"
+        class="hidden w-full text-white desktop:flex desktop:justify-between"
       >
         <template x-for="promo in promos">
-          <p>
+          <p class="flex-1 text-center">
             <a href="#" x-text="promo"></a>
           </p>
         </template>
       </div>
 
-      <div class="block desktop:hidden text-gray-100">
+      <div class="self-center block desktop:hidden text-white">
         <div x-show="action==='right'" x-cloak>
           <template x-for="promo in promos">
             <p
-              class="absolute left-1/2 -translate-x-1/2"
+              class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
               :class="{'hidden':action==='left'}"
-              x-transition:enter="transition-transform duration-1000"
+              x-transition:enter="transition-transform duration-500"
               x-transition:enter-start="translate-x-[500%]"
               x-transition:enter-end="-translate-x-1/2"
-              x-transition:leave="transition-transform duration-1000"
+              x-transition:leave="transition-transform duration-500"
               x-transition:leave-start="-translate-x-1/2"
               x-transition:leave-end="-translate-x-[500%]"
               x-show="promos[currentPromo]===promo"
@@ -117,12 +117,12 @@
         <div x-show="action==='left'" x-cloak>
           <template x-for="promo in promos">
             <p
-              class="absolute left-1/2 -translate-x-1/2"
+              class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2"
               :class="{'hidden':action==='right'}"
-              x-transition:enter="transition-transform duration-1000"
+              x-transition:enter="transition-transform duration-500"
               x-transition:enter-start="-translate-x-[500%]"
               x-transition:enter-end="-translate-x-1/2"
-              x-transition:leave="transition-transform duration-1000"
+              x-transition:leave="transition-transform duration-500"
               x-transition:leave-start="-translate-x-1/2"
               x-transition:leave-end="translate-x-[500%]"
               x-show="promos[currentPromo]===promo"
@@ -131,22 +131,6 @@
             </p>
           </template>
         </div>
-        <!-- 
-            <p>
-            <a
-            href="#"
-            x-ref="prevpromo"
-            x-text="promos[currentPromo]"
-            class="absolute inline-block transition-[left] -left-[100%] ease-linear duration-500"
-          >
-          </a>
-          <a
-            x-ref="promo"
-            href="#"
-            x-text="promos[previousPromo]"
-            class="absolute inline-block transition-[right] right-1/2 translate-x-1/2 ease-linear duration-500"
-          ></a> 
-        </p>-->
       </div>
 
       <svg
@@ -170,9 +154,9 @@
 
     <!--     -->
     <header class="bg-white">
-      <div class="p-3.5">
+      <div class="desktop:pt-[20px]">
         <div
-          class="grid grid-cols-3 grid-rows-2 desktop:grid-rows-1 desktop:grid-cols-[repeat(2,_minmax(15rem,_1.5fr))_repeat(2,1fr)] items-center desktop:justify-items-center pb-2"
+          class="grid grid-cols-3 grid-rows-2 desktop:grid-rows-1 desktop:grid-cols-[repeat(2,_minmax(15rem,_1.5fr))_repeat(2,1fr)] items-center desktop:justify-items-center px-4 desktop:px-0 pb-16 desktop:pb-8"
         >
           <!-- menu bar -->
           <svg
@@ -191,7 +175,7 @@
           </svg>
 
           <picture
-            class="justify-self-center desktop:justify-self-start desktop:order-1 desktop:min-w-[20rem] min-w-[10rem]"
+            class="justify-self-center desktop:justify-self-start desktop:ml-[10px] desktop:order-1 desktop:min-w-[20rem] min-w-[10rem]"
           >
             <source media="(max-width:1199px)" srcset="/logoMobile.png" />
             <source media="(min-width:1200px)" srcset="/logoDesktop.png" />
@@ -202,7 +186,7 @@
           <!-- is Screen Desktop true? visible. If not, check navMenu status,
           if true, the labeled user profile will be invisible and vice versa -->
           <div
-            class="flex justify-end gap-8 desktop:order-4"
+            class="flex justify-end justify-self-end mr-3 gap-8 desktop:order-4"
             :class="isScreenDesktop?'flex':navMenu?'hidden':'flex'"
           >
             <div class="flex gap-2 items-center cursor-pointer">
@@ -220,7 +204,8 @@
                   d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
                 />
               </svg>
-              <span class="text-sm font-medium hidden desktop:block"
+              <span
+                class="text-base leading-[22px] font-medium hidden desktop:block"
                 >Sign In</span
               >
             </div>
@@ -237,14 +222,15 @@
                   d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"
                 />
               </svg>
-              <span class="text-sm font-medium hidden desktop:block"
+              <span
+                class="text-base leading-[22px] font-medium hidden desktop:block"
                 >Basket</span
               >
             </div>
           </div>
           <!-- Search -->
           <div
-            class="w-full col-span-3 desktop:col-span-1 desktop:order-2 relative"
+            class="w-full col-span-3 desktop:col-span-1 desktop:max-w-[420px] desktop:ml-6 desktop:order-2 relative"
           >
             <button
               class="w-5 h-5 text-gray-700 absolute left-3.5 top-1/2 -translate-y-1/2 desktop:right-3.5 desktop:left-auto"
@@ -283,18 +269,23 @@
             </svg>
 
             <input
-              class="w-full h-12 pt-1 pl-10 desktop:pl-4 inline-block rounded-[3px] border border-gray-500 text-gray-700 focus:outline-none focus:bg-blue-50 placeholder-gray-700 desktop:placeholder-gray-500 placeholder:text-sm"
+              class="w-full desktop:w-[102%] h-12 pt-1 pl-10 desktop:pl-4 inline-block rounded-[3px] border border-gray-500 text-gray-700 focus:outline-none focus:bg-blue-50 placeholder-gray-700 desktop:placeholder-gray-500 placeholder:text-sm"
               type="text"
               placeholder="SEARCH"
             />
           </div>
 
-          <div class="hidden desktop:block desktop:order-3">
-            <div class="text-gray-600 font-semibold tracking-wider -mb-0.5">
+          <div class="hidden desktop:block desktop:order-3 ml-12">
+            <div
+              class="text-[#444] text-[18px] font-medium leading-[26px] tracking-[0.5px] -mb-0.5"
+            >
               0330 333 2123
             </div>
-            <p class="text-sm text-[#383737] font-light tracking-tight">
-              MON-FRI 9<span class="text-xs">AM</span> - 5<span class="text-xs"
+            <p
+              class="text-xs leading-[17px] text-[#444] font-light tracking-[0.5px]"
+            >
+              MON-FRI 9<span class="text-[10px]">AM</span> - 5<span
+                class="text-[10px]"
                 >PM</span
               >
             </p>
@@ -304,7 +295,7 @@
       <!-- navMenu first section -->
       <div x-show="navMenu && !isScreenDesktop" x-cloak>
         <div
-          class="absolute top-0 right-0 left-0 p-4 z-20 border-b flex justify-between items-center bg-white"
+          class="fixed top-0 right-0 left-0 p-4 z-20 border-b flex justify-between items-center bg-white"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -384,7 +375,7 @@
           }
         }"
         :class="isScreenDesktop?'visible':navMenu?'visible':'invisible'"
-        class="w-[70%] h-full fixed top-0 z-10 desktop:animation-none desktop:static desktop:h-auto desktop:w-full bg-white border-gray-300 overflow-auto"
+        class="w-[70%] h-full fixed top-0 z-10 desktop:animation-none desktop:static desktop:h-auto desktop:w-full bg-white border-gray-300 overflow-auto pb-16"
         x-init="$watch('navMenu',(val,oldVal)=>{
           $el.classList.remove('invisible')
           $el.classList.remove('animate-slide-left');
@@ -402,7 +393,7 @@
       }"
       >
         <ul
-          class="flex flex-col desktop:flex-row desktop:justify-evenly gap-6 p-4 desktop:pt-0 mt-[4.3rem] desktop:m-0 text-[1.30rem] desktop:text-[0.855rem] font-light desktop:font-medium desktop:border-b desktop:border-gray-300 text-black [&>li>svg]:desktop:hidden"
+          class="flex flex-col desktop:flex-row desktop:flex-wrap desktop:justify-evenly gap-[23px] p-4 desktop:p-3 desktop:pb-4 desktop:pt-0 mt-[4.3rem] desktop:m-0 text-[1.30rem] desktop:text-[16px] font-light desktop:font-medium desktop:border-b desktop:border-gray-300 text-[#444444] [&>li>svg]:desktop:hidden"
         >
           <li>
             <a
@@ -462,7 +453,9 @@
                 <a class="inline-block p-5 text-gray-700" href="#"
                   >Outdoor Furniture</a
                 >
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Benches & Chairs</a></li>
                   <li><a href="#">Outdoor Dining Tables & Chairs</a></li>
                   <li><a href="#">Lounge & Corner Sets</a></li>
@@ -478,7 +471,9 @@
               <ul>
                 <li>
                   <a class="inline-block p-5" href="#">Outdoor Accessories</a>
-                  <ul class="p-4 flex flex-col gap-3">
+                  <ul
+                    class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  >
                     <li><a href="#">Decorative Outdoors</a></li>
                     <li><a href="#">Doormats</a></li>
                     <li><a href="#">Outdoor Garden Mirrors</a></li>
@@ -494,7 +489,9 @@
               <ul>
                 <li>
                   <a class="inline-block p-5" href="#">Outdoor Lighting</a>
-                  <ul class="p-4 flex flex-col gap-3">
+                  <ul
+                    class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  >
                     <li><a href="#">Decorative Outdoor Lights</a></li>
                     <li><a href="#">Outdoor Wall Lights</a></li>
                     <li><a href="#">Festoon Lights</a></li>
@@ -505,7 +502,9 @@
               <ul>
                 <li>
                   <a class="inline-block p-5" href="#">Outdoor Trends</a>
-                  <ul class="p-4 flex flex-col gap-3">
+                  <ul
+                    class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  >
                     <li><a href="#">Tuscan Villa</a></li>
                     <li><a href="#">Industrial Garden</a></li>
                     <li><a href="#">Scandi Outdoor</a></li>
@@ -549,7 +548,9 @@
               <li class="mr-4">
                 <a class="inline-block p-5 text-gray-700" href="#">Seating</a>
 
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li>
                     <a href="#"> Stools </a>
                   </li>
@@ -570,7 +571,9 @@
                   </li>
                 </ul>
 
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li>
                     <a href="#"> Occasional Chairs </a>
                   </li>
@@ -840,7 +843,7 @@
           <li>
             <a
               @mouseover="activeNavLink=$el.innerText"
-              class="hover:border-b hover:border-black"
+              class="hover:border-b hover:border-black text-[#a30b0b]"
               href="#"
               >Clearance</a
             ><svg
@@ -875,14 +878,18 @@
           x-show="activeNavLink==='Outdoor'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li>
-              <a class="inline-block p-5 border-b border-gray-300" href="#"
+              <a
+                class="inline-block py-5 font-medium text-[16px] border-b border-gray-300"
+                href="#"
                 >Outdoor Furniture</a
               >
-              <ul class="p-4 flex flex-col gap-3">
+              <ul
+                class="flex flex-col py-5 gap-3 font-baskerville leading-[18px] text-[16px]"
+              >
                 <li><a href="#">Benches & Chairs</a></li>
                 <li><a href="#">Outdoor Dining Tables & Chairs</a></li>
                 <li><a href="#">Lounge & Corner Sets</a></li>
@@ -897,10 +904,14 @@
           </ul>
           <ul>
             <li>
-              <a class="inline-block p-5 border-b border-gray-300" href="#"
+              <a
+                class="inline-block py-5 font-medium text-[16px] border-b border-gray-300"
+                href="#"
                 >Outdoor Accessories</a
               >
-              <ul class="p-4 flex flex-col gap-3">
+              <ul
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+              >
                 <li><a href="#">Decorative Outdoors</a></li>
                 <li><a href="#">Doormats</a></li>
                 <li><a href="#">Outdoor Garden Mirrors</a></li>
@@ -915,10 +926,14 @@
           </ul>
           <ul>
             <li>
-              <a class="inline-block p-5 border-b border-gray-300" href="#"
+              <a
+                class="inline-block py-5 font-medium text-[16px] border-b border-gray-300"
+                href="#"
                 >Outdoor Lighting</a
               >
-              <ul class="p-4 flex flex-col gap-3">
+              <ul
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+              >
                 <li><a href="#">Decorative Outdoor Lights</a></li>
                 <li><a href="#">Outdoor Wall Lights</a></li>
                 <li><a href="#">Festoon Lights</a></li>
@@ -928,10 +943,14 @@
           </ul>
           <ul>
             <li>
-              <a class="inline-block p-5 border-b border-gray-300" href="#"
+              <a
+                class="inline-block py-5 font-medium text-[16px] border-b border-gray-300"
+                href="#"
                 >Outdoor Trends</a
               >
-              <ul class="p-4 flex flex-col gap-3">
+              <ul
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+              >
                 <li><a href="#">Tuscan Villa</a></li>
                 <li><a href="#">Industrial Garden</a></li>
                 <li><a href="#">Scandi Outdoor</a></li>
@@ -955,13 +974,19 @@
           x-show="activeNavLink==='Seating'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul class="col-span-2">
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#">Seating</a>
-              <div class="flex justify-between p-4 [&>ul>li]:p-2">
-                <ul>
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
+                >Seating</a
+              >
+              <div class="flex justify-between py-4">
+                <ul
+                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li>
                     <a href="#"> Stools </a>
                   </li>
@@ -982,7 +1007,9 @@
                   </li>
                 </ul>
 
-                <ul>
+                <ul
+                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li>
                     <a href="#"> Occasional Chairs </a>
                   </li>
@@ -1041,13 +1068,19 @@
           x-show="activeNavLink==='Tables'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#">Tables</a>
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
+                >Tables</a
+              >
               <div>
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Dining Tables</a></li>
                   <li><a href="#">Desks</a></li>
                   <li><a href="#">Console Tables</a></li>
@@ -1105,13 +1138,19 @@
           x-show="activeNavLink==='Storage'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul class="col-span-2">
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#">Storage</a>
-              <div class="flex justify-between p-4 [&>ul>li]:p-2">
-                <ul>
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
+                >Storage</a
+              >
+              <div class="flex justify-between py-4">
+                <ul
+                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Sideboards</a></li>
                   <li><a href="#">Chests of Drawers</a></li>
                   <li><a href="#">Bookcases & Shelf Units</a></li>
@@ -1123,7 +1162,9 @@
                   <li><a href="#">Bags & Baskets</a></li>
                 </ul>
 
-                <ul>
+                <ul
+                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#"> Clothes Rails & Screens</a></li>
                   <li><a href="#"> Laundry Baskets</a></li>
                   <li><a href="#"> Wine Racks & Kitchen Storage</a></li>
@@ -1174,13 +1215,19 @@
           x-show="activeNavLink==='Bedroom'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul class="col-span-2">
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#">Bedroom</a>
-              <div class="flex justify-between p-4 [&>ul>li]:p-2">
-                <ul>
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
+                >Bedroom</a
+              >
+              <div class="flex justify-between py-4">
+                <ul
+                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#"> Bedside Tables</a></li>
                   <li><a href="#"> Beds, Headboards & Mattresses</a></li>
                   <li><a href="#"> Dressing Tables & Stools</a></li>
@@ -1189,7 +1236,9 @@
                   <li><a href="#"> Quilts & Bedspreads</a></li>
                 </ul>
 
-                <ul>
+                <ul
+                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Bedside Lights</a></li>
                   <li><a href="#">Laundry Baskets</a></li>
                   <li><a href="#">Sofa Beds</a></li>
@@ -1237,13 +1286,19 @@
           x-show="activeNavLink==='Mirrors'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#">Mirrors</a>
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
+                >Mirrors</a
+              >
               <div>
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Wall Mirrors</a></li>
                   <li><a href="#">Full Length Mirrors</a></li>
                   <li><a href="#">Bathroom Mirrors</a></li>
@@ -1300,17 +1355,19 @@
           x-show="activeNavLink==='Lighting'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li class="w-full pr-4">
               <a
-                class="w-full inline-block p-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
                 href="#"
                 >Lighting</a
               >
 
-              <ul class="p-4 flex flex-col gap-3">
+              <ul
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+              >
                 <li><a href="#">Pendants</a></li>
                 <li><a href="#">Floor Lamps</a></li>
                 <li><a href="#">Desk Lamps</a></li>
@@ -1328,12 +1385,14 @@
           <ul>
             <li class="w-full">
               <a
-                class="w-full inline-block p-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
                 href="#"
                 >Outdoor Lighting</a
               >
 
-              <ul class="p-4 flex flex-col gap-3">
+              <ul
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+              >
                 <li><a href="#">Decorative Outdoor Lights</a></li>
                 <li><a href="#">Outdoor Wall Lights</a></li>
                 <li><a href="#">Festoon Lights</a></li>
@@ -1379,15 +1438,19 @@
           x-show="activeNavLink==='Accessories'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul class="col-span-2">
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#"
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
                 >Accessories</a
               >
-              <div class="flex justify-between p-4 [&>ul>li]:p-2">
-                <ul>
+              <div class="flex justify-between py-4">
+                <ul
+                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Vases</a></li>
                   <li><a href="#">Ornaments</a></li>
                   <li><a href="#">Clocks</a></li>
@@ -1399,7 +1462,9 @@
                   <li><a href="#">Faux Plants & Flowers</a></li>
                 </ul>
 
-                <ul>
+                <ul
+                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Wall Art</a></li>
                   <li><a href="#">Fireside</a></li>
                   <li><a href="#">Bathroom</a></li>
@@ -1451,15 +1516,19 @@
           x-show="activeNavLink==='Soft Furnishings'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#"
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
                 >Soft Furnishings</a
               >
               <div>
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Cushions</a></li>
                   <li><a href="#">Throws</a></li>
                   <li><a href="#">Quilts & Bedspreads</a></li>
@@ -1517,13 +1586,19 @@
           x-show="activeNavLink==='Rugs'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#">Rugs</a>
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
+                >Rugs</a
+              >
               <div>
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Rugs</a></li>
                   <li><a href="#">Runners</a></li>
                   <li><a href="#">Sheepskin Rugs & Hides</a></li>
@@ -1576,15 +1651,19 @@
           x-show="activeNavLink==='Shop By Room'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#"
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
                 >Shop By Room</a
               >
               <div>
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Bedroom</a></li>
                   <li><a href="#">Home Office</a></li>
                   <li><a href="#">Kitchen</a></li>
@@ -1641,13 +1720,19 @@
           x-show="activeNavLink==='Gifts'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#">Gifts</a>
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
+                >Gifts</a
+              >
               <div>
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">Gifts Ideas</a></li>
                   <li><a href="#">Gift Vouchers</a></li>
                   <li><a href="#">View All</a></li>
@@ -1699,17 +1784,19 @@
           x-show="activeNavLink==='Inspiration'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li class="w-full pr-4">
               <a
-                class="w-full inline-block p-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
                 href="#"
                 >Inspiration</a
               >
 
-              <ul class="p-4 flex flex-col gap-3">
+              <ul
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+              >
                 <li><a href="#">Style Notes Blog</a></li>
                 <li><a href="#">Online Catalogue</a></li>
                 <li><a href="#">Outdoor Lookbook</a></li>
@@ -1722,12 +1809,14 @@
           <ul>
             <li class="w-full pr-4">
               <a
-                class="w-full inline-block p-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
                 href="#"
                 >Trends</a
               >
 
-              <ul class="p-4 flex flex-col gap-3">
+              <ul
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+              >
                 <li><a href="#">Faded Elegance</a></li>
                 <li><a href="#">French Blue</a></li>
                 <li><a href="#">Industrial Loft</a></li>
@@ -1739,12 +1828,14 @@
           <ul>
             <li class="w-full pr-4">
               <a
-                class="w-full inline-block p-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
                 href="#"
                 >Outdoor Trends</a
               >
 
-              <ul class="p-4 flex flex-col gap-3">
+              <ul
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+              >
                 <li><a href="#">Tuscan Villa</a></li>
                 <li><a href="#">Industrial Garden</a></li>
                 <li><a href="#">Scandi Outdoor</a></li>
@@ -1780,15 +1871,19 @@
           x-show="activeNavLink==='Clearance'"
           x-cloak
           x-on:mouseleave="activeNavLink=''"
-          class="grid grid-cols-6 text-[#444] text-sm"
+          class="grid grid-cols-6 pl-[0.5%] text-[#444] text-sm"
         >
           <ul>
             <li class="mr-4">
-              <a class="block p-5 border-b border-gray-300" href="#"
+              <a
+                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                href="#"
                 >Clearance</a
               >
               <div>
-                <ul class="p-4 flex flex-col gap-3">
+                <ul
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                >
                   <li><a href="#">25% Off</a></li>
                   <li><a href="#">35% Off</a></li>
                   <li><a href="#">50% Off</a></li>
@@ -1805,7 +1900,7 @@
 
     <!-- Start Main -->
     <main class="bg-white">
-      <div class="flex flex-wrap items-center bg-[#F1F1ED] lg:mt-16">
+      <div class="flex flex-wrap items-center bg-[#F1F1ED]">
         <section
           class="flex flex-col items-center lg:items-start gap-4 w-full lg:w-[40%] p-6 lg:pl-20 lg:pr-8 pt-8 font-baskerville text-[#444]"
           x-data="{
@@ -1826,8 +1921,10 @@
         }
       }"
         >
-          <h1 class="text-3xl lg:text-5xl">Tables</h1>
-          <div class="text-center lg:text-start">
+          <h1 class="text-3xl lg:text-[44px] leading-[48px] text-[#444]">
+            Tables
+          </h1>
+          <div class="text-center lg:text-start lg:text-lg lg:leading-[29px]">
             <p class="inline" x-ref="h1para" x-effect=" paraHandler($el);">
               A high-quality selection of sturdy and stylish tables from
               practical side tables and desks – perfect for the home office – to
@@ -1838,7 +1935,7 @@
               bedroom.
             </p>
             <button
-              class="inline relative min-w-fit text-[#444] font-normal"
+              class="inline relative min-w-fit text-[#444] font-normal leading-[28px]"
               @click="readMore=true"
               :class="{'hidden':readMore}"
             >
@@ -1846,7 +1943,9 @@
               Read More
             </button>
           </div>
-          <button class="relative uppercase text-[#222]">
+          <button
+            class="relative uppercase text-[#222] hover:underline hover:underline-offset-4 text-medium"
+          >
             <span class="custom-underline"></span>
             View All
           </button>
@@ -1860,9 +1959,9 @@
         </div>
       </div>
       <!-- Image Carousel -->
-      <div class="relative cursor-pointer px-4" x-data="imgslider">
+      <div class="relative cursor-pointer pt-[5px]" x-data="imgslider">
         <div id="myGlide" class="glide">
-          <div data-glide-el="controls">
+          <div class="hidden md:block" data-glide-el="controls">
             <button data-glide-dir="<" class="glide__arrow glide__arrow--left">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -1870,7 +1969,8 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 cursor-pointer absolute z-10 left-0 top-1/2 -translate-y-[70%] bg-white"
+                class="w-8 h-8 cursor-pointer absolute z-10 left-0 top-1/2 -translate-y-[70%]"
+                :class="glide.index===0 ? 'bg-white/20':'bg-white/70'"
               >
                 <path
                   stroke-linecap="round"
@@ -1888,6 +1988,7 @@
                 stroke="currentColor"
                 class="w-8 h-8 cursor-pointer absolute z-10 right-0 top-1/2 -translate-y-[70%] bg-white"
                 data-glide-dir=">"
+                :class="glide.index===2 ? 'bg-white/20':'bg-white/70'"
               >
                 <path
                   stroke-linecap="round"
@@ -1902,36 +2003,68 @@
               class="glide__slides [&>li>img]:lg:w-full [&>li>span]:font-baskerville"
             >
               <li class="glide__slide">
-                <img src="https://picsum.photos/id/2/400/400" alt="" />
-                <span class="text-gray-900/90 text-lg">Dining Tables</span>
+                <img
+                  class="mb-[10px]"
+                  src="https://picsum.photos/id/2/400/400"
+                  alt=""
+                />
+                <span class="text-[#444] text-lg">Dining Tables</span>
               </li>
               <li class="glide__slide">
-                <img src="https://picsum.photos/id/3/400/400" alt="" />
-                <span class="text-gray-900/90 text-lg">Desks</span>
+                <img
+                  class="mb-[10px]"
+                  src="https://picsum.photos/id/3/400/400"
+                  alt=""
+                />
+                <span class="text-[#444] text-lg">Desks</span>
               </li>
               <li class="glide__slide">
-                <img src="https://picsum.photos/id/4/400/400" alt="" />
-                <span class="text-gray-900/90 text-lg">Console Tables</span>
+                <img
+                  class="mb-[10px]"
+                  src="https://picsum.photos/id/4/400/400"
+                  alt=""
+                />
+                <span class="text-[#444] text-lg">Console Tables</span>
               </li>
               <li class="glide__slide">
-                <img src="https://picsum.photos/id/5/400/400" alt="" />
-                <span class="text-gray-900/90 text-lg">Side Tables</span>
+                <img
+                  class="mb-[10px]"
+                  src="https://picsum.photos/id/5/400/400"
+                  alt=""
+                />
+                <span class="text-[#444] text-lg">Side Tables</span>
               </li>
               <li class="glide__slide">
-                <img src="https://picsum.photos/id/6/400/400" alt="" />
-                <span class="text-gray-900/90 text-lg">Coffe Tables</span>
+                <img
+                  class="mb-[10px]"
+                  src="https://picsum.photos/id/6/400/400"
+                  alt=""
+                />
+                <span class="text-[#444] text-lg">Coffe Tables</span>
               </li>
               <li class="glide__slide">
-                <img src="https://picsum.photos/id/7/400/400" alt="" />
-                <span class="text-gray-900/90 text-lg">Nesting Tables</span>
+                <img
+                  class="mb-[10px]"
+                  src="https://picsum.photos/id/7/400/400"
+                  alt=""
+                />
+                <span class="text-[#444] text-lg">Nesting Tables</span>
               </li>
               <li class="glide__slide">
-                <img src="https://picsum.photos/id/8/400/400" alt="" />
-                <span class="text-gray-900/90 text-lg">Bedside Tables</span>
+                <img
+                  class="mb-[10px]"
+                  src="https://picsum.photos/id/8/400/400"
+                  alt=""
+                />
+                <span class="text-[#444] text-lg">Bedside Tables</span>
               </li>
               <li class="glide__slide">
-                <img src="https://picsum.photos/id/9/400/400" alt="" />
-                <span class="text-gray-900/90 text-lg"
+                <img
+                  class="mb-[10px]"
+                  src="https://picsum.photos/id/9/400/400"
+                  alt=""
+                />
+                <span class="text-[#444] text-lg"
                   >Dressing Tables and Stools</span
                 >
               </li>
@@ -1941,21 +2074,20 @@
       </div>
       <!-- End Image Carousel -->
       <!-- Filter Div -->
-      <div
+      <!-- <div
         class="flex flex-col gap-4 py-8"
         x-data="{
           filterMode:5,
-          rangeLeft:'',
-          rangeRight:'',
+          
         }"
       >
         <p class="text-center text-gray-700 text-sm">1-40 OF 125 PRODUCTS</p>
 
         <div
           class="flex flex-wrap md:flex-nowrap gap-4 justify-between p-8 text-gray-700"
-        >
-          <!-- view number-->
-
+        > -->
+      <!-- view number-->
+      <!-- 
           <div class="hidden md:flex items-center gap-2 relative">
             <label for="viewProducts" class="uppercase text-gray-600 text-sm"
               >View:</label
@@ -1964,7 +2096,7 @@
             <select
               name="viewProducts"
               id="viewProducts"
-              class="uppercase border border-black/50 rounded-sm cursor-pointer p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
             >
               <option value="40">40</option>
               <option value="80">80</option>
@@ -1986,9 +2118,9 @@
             </svg>
           </div>
 
-          <div class="flex items-center gap-6 order-3 md:order-4 ml-auto">
-            <!-- switch modes-->
-            <div
+          <div class="flex items-center gap-6 order-3 md:order-4 ml-auto"> -->
+      <!-- switch modes-->
+      <!-- <div
               class="hidden md:flex items-center rounded-[0.4rem] border border-gray-700 overflow-hidden"
             >
               <a
@@ -2005,15 +2137,15 @@
                 href="#"
                 >5</a
               >
-            </div>
-            <!-- sort -->
-            <div class="relative md:flex items-center gap-2">
+            </div> -->
+      <!-- sort -->
+      <!-- <div class="relative md:flex items-center gap-2">
               <label for="sortProducts" class="uppercase text-gray-600 text-sm"
                 >sort by:</label
               >
               <select
                 name="sortProducts"
-                class="uppercase border border-black/50 rounded-sm cursor-pointer pl-3 pr-8 py-3 md:px-2 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] outline-none appearance-none"
+                class="uppercase border border-black/50 rounded-sm pl-3 pr-8 py-3 md:px-2 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] outline-none appearance-none"
                 id="sortProducts"
               >
                 <option value="relevance">RELEVANCE</option>
@@ -2039,10 +2171,10 @@
                 />
               </svg>
             </div>
-          </div>
+          </div> -->
 
-          <!-- range -->
-          <div
+      <!-- range -->
+      <!-- <div
             class="w-[75%] mx-auto self-center md:justify-self-end order-4 md:order-2 md:w-[40%] mt-4 md:m-0 md:ml-auto flex items-center justify-center"
             x-data="doubleThumbRange"
           >
@@ -2057,11 +2189,131 @@
             ></span>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- End Filter -->
+      <!-- filter div retry -->
+      <div
+        x-data="
+      {
+        filterMode:5,
+      }
+      "
+        class="relative pt-[30px]"
+      >
+        <!-- product numbers -->
+
+        <p
+          class="absolute block w-full text-center mb-[30px] text-gray-700 text-sm"
+        >
+          1-40 OF 125 PRODUCTS
+        </p>
+        <div class="pt-[50px]">
+          <div class="hidden relative md:inline-block pl-[70px]">
+            <label for="viewProducts" class="uppercase text-black/80 text-sm"
+              >View:</label
+            >
+
+            <select
+              name="viewProducts"
+              id="viewProducts"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] bg-white"
+            >
+              <option value="40">40</option>
+              <option value="80">80</option>
+            </select>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5 absolute right-2 bottom-1/2 translate-y-1/2 pointer-events-none"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </div>
+
+          <div class="float-right relative mr-[20px]">
+            <label for="sortProducts" class="uppercase text-gray-600 text-sm"
+              >sort by:</label
+            >
+            <select
+              name="sortProducts"
+              class="uppercase border border-black/50 rounded-sm pl-3 pr-8 py-3 md:px-2 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] bg-white outline-none appearance-none"
+              id="sortProducts"
+            >
+              <option value="relevance">RELEVANCE</option>
+              <option value="favourites">FAVOURITES</option>
+              <option value="productNameAZ">PRODUCT NAME A-Z</option>
+              <option value="productNameZA">PRODUCT NAME Z-A</option>
+              <option value="priceLowHigh">PRICE LOW-HIGH</option>
+              <option value="priceHighLow">PRICE HIGH-LOW</option>
+            </select>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5 absolute right-2 bottom-1/2 translate-y-1/2 pointer-events-none"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
+          </div>
+
+          <div
+            class="hidden md:block float-right mx-[10px] rounded-[0.4rem] border border-gray-700 overflow-hidden"
+          >
+            <a
+              class="inline-block py-[11px] px-[15px]"
+              :class="{'bg-gray-700 text-white':filterMode===3}"
+              @click.prevent="filterMode=3"
+              href="#"
+              >3</a
+            ><a
+              class="inline-block py-[11px] px-[15px]"
+              :class="{'bg-gray-700 text-white':filterMode===5}"
+              @click.prevent="filterMode=5"
+              href="#"
+              >5</a
+            >
+          </div>
+
+          <div
+            class="lg:absolute w-[75%] lg:w-[33%] inset-0 mx-auto flex flex-col justify-end"
+            x-data="doubleThumbRange"
+          >
+            <span
+              class="uppercase block text-center w-full text-sm text-[#444] mb-[5px]"
+              >Price</span
+            >
+            <div class="w-full flex">
+              <span
+                class="mr-4 text-xs"
+                x-html="`<span class='text-sm'>£</span>${Math.floor(vals[0])}`"
+              ></span>
+              <div id="double-thumb-range" x-ref="doubleThumbRange"></div>
+              <span
+                class="ml-5 text-xs"
+                x-html="`<span class='text-sm'>£</span>${Math.floor(vals[1])}`"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- product list -->
       <div
-        class="grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] md:grid-cols-5"
+        class="mt-[30px] grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] md:grid-cols-5"
       >
         <div>
           <img
@@ -2168,7 +2420,7 @@
         <div>
           <img
             class="mx-auto w-full"
-            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/21/250/300':'https://picsum.photos/id/21/200/250'"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/26/250/300':'https://picsum.photos/id/26/200/250'"
             alt=""
           />
           <a
@@ -2181,7 +2433,7 @@
         <div>
           <img
             class="mx-auto w-full"
-            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/22/250/300':'https://picsum.photos/id/22/200/250'"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/27/250/300':'https://picsum.photos/id/27/200/250'"
             alt=""
           />
           <a
@@ -2201,7 +2453,7 @@
         <div>
           <img
             class="mx-auto w-full"
-            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/23/250/300':'https://picsum.photos/id/23/200/250'"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/28/250/300':'https://picsum.photos/id/28/200/250'"
             alt=""
           />
           <a
@@ -2217,7 +2469,7 @@
         <div>
           <img
             class="mx-auto w-full"
-            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/24/250/300':'https://picsum.photos/id/24/200/250'"
+            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/29/250/300':'https://picsum.photos/id/29/200/250'"
             alt=""
           />
           <a
@@ -2297,7 +2549,7 @@
             name="viewProducts"
             id="viewProducts"
             x-model="viewProductValue"
-            class="uppercase border border-black/50 rounded-sm cursor-pointer p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
+            class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
           >
             <option value="40">40</option>
             <option value="80">80</option>
@@ -2383,7 +2635,7 @@
               name="viewProducts"
               id="viewProducts"
               x-model="viewProductValue"
-              class="uppercase border border-black/50 rounded-sm cursor-pointer p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
             >
               <option value="40">40</option>
               <option value="80">80</option>
@@ -2474,7 +2726,7 @@
           <div>
             <img
               class="mx-auto w-full"
-              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/20/250/300':'https://picsum.photos/id/20/200/250'"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/30/250/300':'https://picsum.photos/id/30/200/250'"
               alt=""
             />
             <a
@@ -2491,7 +2743,7 @@
           <div>
             <img
               class="mx-auto w-full"
-              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/21/250/300':'https://picsum.photos/id/21/200/250'"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/31/250/300':'https://picsum.photos/id/31/200/250'"
               alt=""
             />
             <a
@@ -2506,7 +2758,7 @@
           <div>
             <img
               class="mx-auto w-full"
-              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/22/250/300':'https://picsum.photos/id/22/200/250'"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/32/250/300':'https://picsum.photos/id/32/200/250'"
               alt=""
             />
 
@@ -2523,7 +2775,7 @@
           <div>
             <img
               class="mx-auto w-full"
-              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/23/250/300':'https://picsum.photos/id/23/200/250'"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/33/250/300':'https://picsum.photos/id/33/200/250'"
               alt=""
             />
             <a
@@ -2541,7 +2793,7 @@
           <div>
             <img
               class="mx-auto w-full"
-              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/24/250/300':'https://picsum.photos/id/24/200/250'"
+              :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/34/250/300':'https://picsum.photos/id/34/200/250'"
               alt=""
             />
             <a

@@ -7,6 +7,7 @@ import "nouislider/dist/nouislider.css";
 window.Alpine = Alpine;
 
 Alpine.data("imgslider", () => ({
+  glide: null,
   glideOptions: {
     type: "slider",
     startAt: 0,

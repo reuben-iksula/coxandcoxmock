@@ -6,7 +6,7 @@
 
 @layer utilities {
   .custom-underline {
-    @apply absolute w-full bottom-[0.3rem] bg-[#444] h-[0.01rem];
+    @apply absolute w-full bottom-[0.1rem] bg-[#444] h-[0.01rem];
   }
 }
 
