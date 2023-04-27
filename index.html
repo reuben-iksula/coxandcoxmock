@@ -1899,7 +1899,7 @@
     <!-- End Header -->
 
     <!-- Start Main -->
-    <main class="bg-white">
+    <main class="w-[97%] bg-white">
       <div class="flex flex-wrap items-center bg-[#F1F1ED]">
         <section
           class="flex flex-col items-center lg:items-start gap-4 w-full lg:w-[40%] p-6 lg:pl-20 lg:pr-8 pt-8 font-baskerville text-[#444]"
@@ -1959,17 +1959,18 @@
         </div>
       </div>
       <!-- Image Carousel -->
-      <div class="relative cursor-pointer pt-[5px]" x-data="imgslider">
+      <div class="relative cursor-pointer p-[15px]" x-data="imgslider">
         <div id="myGlide" class="glide">
           <div class="hidden md:block" data-glide-el="controls">
             <button data-glide-dir="<" class="glide__arrow glide__arrow--left">
+              <!-- 297 207 -->
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 cursor-pointer absolute z-10 left-0 top-1/2 -translate-y-[70%]"
+                class="w-8 h-8 cursor-pointer absolute z-10 left-0 top-[calc((100%_-_80px_+_20px)_/_2)]"
                 :class="glide.index===0 ? 'bg-white/20':'bg-white/70'"
               >
                 <path
@@ -1986,7 +1987,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 cursor-pointer absolute z-10 right-0 top-1/2 -translate-y-[70%] bg-white"
+                class="w-8 h-8 cursor-pointer absolute z-10 right-0 top-[calc((100%_-_80px_+_20px)_/_2)] bg-white"
                 data-glide-dir=">"
                 :class="glide.index===2 ? 'bg-white/20':'bg-white/70'"
               >
@@ -2198,25 +2199,25 @@
         filterMode:5,
       }
       "
-        class="relative pt-[30px]"
+        class="relative pt-[10px]"
       >
         <!-- product numbers -->
 
         <p
-          class="absolute block w-full text-center mb-[30px] text-gray-700 text-sm"
+          class="absolute block w-full text-center mb-[30px] text-[#444] text-sm"
         >
           1-40 OF 125 PRODUCTS
         </p>
         <div class="pt-[50px]">
-          <div class="hidden relative md:inline-block pl-[70px]">
+          <div class="hidden relative md:inline-block pl-[70px] min-w-max">
             <label for="viewProducts" class="uppercase text-black/80 text-sm"
-              >View:</label
+              >View&nbsp;:&nbsp;&nbsp;</label
             >
 
             <select
               name="viewProducts"
               id="viewProducts"
-              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] bg-white"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-14 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] text-[#444] bg-white font-medium"
             >
               <option value="40">40</option>
               <option value="80">80</option>
@@ -2239,12 +2240,12 @@
           </div>
 
           <div class="float-right relative mr-[20px]">
-            <label for="sortProducts" class="uppercase text-gray-600 text-sm"
-              >sort by:</label
+            <label for="sortProducts" class="uppercase text-[#444] text-sm"
+              >sort by&nbsp;:&nbsp;&nbsp;</label
             >
             <select
               name="sortProducts"
-              class="uppercase border border-black/50 rounded-sm pl-3 pr-8 py-3 md:px-2 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] bg-white outline-none appearance-none"
+              class="uppercase border border-black/50 rounded-sm pl-3 pr-8 py-3 md:pr-6 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] bg-white outline-none appearance-none font-medium text-[#444]"
               id="sortProducts"
             >
               <option value="relevance">RELEVANCE</option>
@@ -2272,7 +2273,7 @@
           </div>
 
           <div
-            class="hidden md:block float-right mx-[10px] rounded-[0.4rem] border border-gray-700 overflow-hidden"
+            class="hidden md:block float-right mx-[20px] rounded-[0.3rem] border border-[#7a7f85] text-[#444] overflow-hidden"
           >
             <a
               class="inline-block py-[11px] px-[15px]"
@@ -2290,21 +2291,21 @@
           </div>
 
           <div
-            class="lg:absolute w-[75%] lg:w-[33%] inset-0 mx-auto flex flex-col justify-end"
+            class="desktop:absolute w-[75%] desktop:w-[27%] inset-0 mx-auto flex flex-col justify-end"
             x-data="doubleThumbRange"
           >
             <span
-              class="uppercase block text-center w-full text-sm text-[#444] mb-[5px]"
+              class="uppercase block text-center w-full text-sm text-[#444] mb-[5px] mt-[30px] tracking-normal"
               >Price</span
             >
-            <div class="w-full flex">
+            <div class="w-full flex items-center">
               <span
-                class="mr-4 text-xs"
+                class="block desktop:inline mr-16 desktop:mr-4 text-sm font-normal leading-[20px] text-[#444]"
                 x-html="`<span class='text-sm'>£</span>${Math.floor(vals[0])}`"
               ></span>
               <div id="double-thumb-range" x-ref="doubleThumbRange"></div>
               <span
-                class="ml-5 text-xs"
+                class="text-sm font-normal ml-16 desktop:ml-6 leading-[20px] text-[#444]"
                 x-html="`<span class='text-sm'>£</span>${Math.floor(vals[1])}`"
               ></span>
             </div>
@@ -2313,7 +2314,7 @@
       </div>
       <!-- product list -->
       <div
-        class="mt-[30px] grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] md:grid-cols-5"
+        class="mt-[35px] grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] md:grid-cols-5 px-[15px]"
       >
         <div>
           <img
@@ -2321,14 +2322,16 @@
             :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/20/250/300':'https://picsum.photos/id/20/200/250'"
             alt=""
           />
-          <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
-            href="#"
-            ><strong class="font-medium"
-              >Limewashed Parquet Dining Table</strong
-            ></a
-          >
-          <p class="text-center text-lg text-gray-700 text-[22px]">£1,550.00</p>
+          <div>
+            <a
+              class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+              href="#"
+              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+                >Limewashed Parquet Dining Table</strong
+              ></a
+            >
+            <p class="text-center text-[#434d5b] text-[22px]">£1,550.00</p>
+          </div>
         </div>
         <div>
           <img
@@ -2337,14 +2340,17 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
             href="#"
-            ><strong class="font-medium">Reclaimed Oak Console Table</strong>
+            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+              >Reclaimed Oak Console Table</strong
+            >
           </a>
-          <p class="text-center text-lg text-gray-700 text-[22px]">£1,175.00</p>
+          <p class="text-center text-[#434d5b] text-[22px]">£1,175.00</p>
         </div>
         <div class="relative">
-          <span class="absolute bg-gray-900 text-white p-2 top-0 right-0"
+          <span
+            class="absolute bg-[#434D5B] text-white pl-[9px] pr-[8px] py-[5px] top-0 right-0"
             >New</span
           >
           <img
@@ -2354,14 +2360,16 @@
           />
 
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
             href="#"
-            ><strong class="font-medium">Glass Nesting Side Table</strong></a
+            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+              >Glass Nesting Side Table</strong
+            ></a
           >
           <p class="text-sm text-gray-700 text-center mb-4">
             Stock due LATE APRIL. Pre-order now.
           </p>
-          <p class="text-center text-lg text-gray-700 text-[22px]">£450.00</p>
+          <p class="text-center text-[#434d5b] text-[22px]">£450.00</p>
         </div>
         <div>
           <img
@@ -2370,14 +2378,14 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
             href="#"
           >
-            <strong class="font-medium">
+            <strong class="font-medium text-lg leading-[26px] text-[#444]">
               Camille Dining Table - Natural</strong
             ></a
           >
-          <p class="text-center text-lg text-gray-700 text-[22px]">£1,350.00</p>
+          <p class="text-center text-[#434d5b] text-[22px]">£1,350.00</p>
         </div>
         <div>
           <img
@@ -2386,18 +2394,19 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
             href="#"
-            ><strong class="font-medium"
+            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
               >Glass Display Console Table - Aged Bronze</strong
             ></a
           >
-          <p class="text-center text-lg text-gray-700 text-[22px]">£450.00</p>
+          <p class="text-center text-[#434d5b] text-[22px]">£450.00</p>
         </div>
 
         <!-- --- -->
         <div class="relative">
-          <span class="absolute bg-gray-900 text-white p-2 top-0 right-0"
+          <span
+            class="absolute bg-[#434D5B] text-white pl-[9px] pr-[8px] py-[5px] top-0 right-0"
             >New</span
           >
           <img
@@ -2405,17 +2414,19 @@
             :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/25/250/300':'https://picsum.photos/id/25/200/250'"
             alt=""
           />
-          <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
-            href="#"
-            ><strong class="font-medium"
-              >Freja Dining Table - Rectangular</strong
-            >
-          </a>
-          <p class="text-sm text-gray-700 text-center mb-4">
-            Stock due LATE APRIL. Pre-order now.
-          </p>
-          <p class="text-center text-lg text-gray-700 text-[22px]">£995.00</p>
+          <div>
+            <a
+              class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+              href="#"
+              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+                >Freja Dining Table - Rectangular</strong
+              >
+            </a>
+            <p class="text-base text-gray-700 text-center mb-4">
+              Stock due LATE APRIL. Pre-order now.
+            </p>
+            <p class="text-center text-[#434d5b] text-[22px]">£995.00</p>
+          </div>
         </div>
         <div>
           <img
@@ -2424,11 +2435,13 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
             href="#"
-            ><strong class="font-medium">Industrial Iron Console Table</strong>
+            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+              >Industrial Iron Console Table</strong
+            >
           </a>
-          <p class="text-center text-lg text-gray-700 text-[22px]">£525.00</p>
+          <p class="text-center text-[#434d5b] text-[22px]">£525.00</p>
         </div>
         <div>
           <img
@@ -2437,15 +2450,15 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
             href="#"
-            ><strong class="font-medium"
+            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
               >Mila Side Tables - Charcoal
             </strong></a
           >
 
-          <p class="text-center text-lg text-gray-700 text-[22px]">
-            <span class="text-xs uppercase text-gray-500 align-middle"
+          <p class="text-center text-[#434d5b] text-[22px]">
+            <span class="text-xs uppercase text-[#a7acb0] align-middle"
               >FROM &nbsp;</span
             >£97.50
           </p>
@@ -2457,14 +2470,14 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
             href="#"
           >
-            <strong class="font-medium">
+            <strong class="font-medium text-lg leading-[26px] text-[#444]">
               Camille Display Console - Natural
             </strong></a
           >
-          <p class="text-center text-lg text-gray-700 text-[22px]">£1,150.00</p>
+          <p class="text-center text-[#434d5b] text-[22px]">£1,150.00</p>
         </div>
         <div>
           <img
@@ -2473,13 +2486,13 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
             href="#"
-            ><strong class="font-medium"
+            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
               >Salcombe Dining Table - Rectangular Extendable
             </strong></a
           >
-          <p class="text-center text-lg text-gray-700 text-[22px]">£925.00</p>
+          <p class="text-center text-[#434d5b] text-[22px]">£925.00</p>
         </div>
       </div>
       <!-- --- -->
@@ -2532,24 +2545,24 @@
 
           viewProductValue:'40',
         }"
-        class="pt-16 pb-8 px-4 md:flex justify-between items-center flex-col md:flex-row"
+        class="pt-16 pb-8 px-4 w-full"
       >
-        <p
+        <!-- <p
           class="order-2 justify-self-center text-black/80 text-center uppercase text-xs md:text-sm"
         >
           1-40 of 126 Products
-        </p>
+        </p> -->
         <!-- view products desktop -->
-        <div class="hidden md:block order-1 max-w-max relative">
+        <!-- <div class="hidden md:block order-1 max-w-max relative">
           <label for="viewProducts" class="uppercase text-black/80 text-sm"
-            >View:</label
+            >View&nbsp;:&nbsp;&nbsp;</label
           >
 
           <select
             name="viewProducts"
             id="viewProducts"
             x-model="viewProductValue"
-            class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
+            class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] text-[#444]"
           >
             <option value="40">40</option>
             <option value="80">80</option>
@@ -2569,12 +2582,12 @@
               d="M19.5 8.25l-7.5 7.5-7.5-7.5"
             />
           </svg>
-        </div>
+        </div> -->
         <!-- pagination desktop -->
-        <div class="order-3 hidden md:block">
+        <!-- <div class="order-3 hidden md:block">
           <ul class="flex border border-black/50 text-black/60 rounded-lg">
             <li
-              class="cursor-pointer border-y rounded-tl-lg rounded-bl-lg border-black/20 px-2 py-3"
+              class="cursor-pointer border-y rounded-tl-lg rounded-bl-lg border-black/20 p-4"
               :class="{'hidden':click===0}"
               @click="handlePaginationLeft"
             >
@@ -2621,21 +2634,21 @@
               </svg>
             </li>
           </ul>
-        </div>
+        </div> -->
         <!-- mobile parts -->
-        <div
+        <!-- <div
           class="flex md:hidden order-2 gap-8 items-center justify-center mt-8"
         >
           <div class="max-w-max relative">
             <label for="viewProducts" class="uppercase text-black/80 text-sm"
-              >View:</label
+              >View&nbsp;:&nbsp;&nbsp;</label
             >
 
             <select
               name="viewProducts"
               id="viewProducts"
               x-model="viewProductValue"
-              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] text-[#444] font-medium"
             >
               <option value="40">40</option>
               <option value="80">80</option>
@@ -2655,10 +2668,10 @@
                 d="M19.5 8.25l-7.5 7.5-7.5-7.5"
               />
             </svg>
-          </div>
-          <!-- pagination -->
+          </div> -->
+        <!-- pagination -->
 
-          <div>
+        <!-- <div>
             <ul class="flex border border-black/50 text-black/60 rounded-lg">
               <li
                 class="cursor-pointer border-y rounded-tl-lg rounded-bl-lg border-black/20 px-2 py-3"
@@ -2708,15 +2721,110 @@
                 </svg>
               </li>
             </ul>
+          </div> -->
+        <!-- pagination desktop -->
+        <!-- </div> -->
+        <!-- pagintion retry -->
+        <div
+          class="relative px-[9px] my-5 w-full flex flex-wrap justify-center items-center gap-x-8 desktop:flex-row desktop:justify-between"
+        >
+          <p
+            class="desktop:absolute block w-full text-center mb-[30px] text-[#444] text-sm"
+          >
+            1-40 OF 125 PRODUCTS
+          </p>
+          <div class="relative inline-block min-w-max">
+            <label for="viewProducts" class="uppercase text-black/80 text-sm"
+              >View&nbsp;:&nbsp;&nbsp;</label
+            >
+
+            <select
+              name="viewProducts"
+              id="viewProducts"
+              class="uppercase border border-[#7a7f85] rounded-[3px] p-3 pr-14 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] text-[#444] bg-white font-medium"
+            >
+              <option value="40">40</option>
+              <option value="80">80</option>
+            </select>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5 absolute right-2 bottom-1/2 translate-y-1/2 pointer-events-none"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+              />
+            </svg>
           </div>
-          <!-- pagination desktop -->
+
+          <div>
+            <ul
+              class="flex border max-h-12 border-[#444] text-black/60 rounded-[5px]"
+            >
+              <li
+                class="cursor-pointer border-y border-r rounded-tl-[5px] rounded-bl-[5px] border-black/20 p-[18px] flex justify-center items-center"
+                :class="{'hidden':click===0}"
+                @click="handlePaginationLeft"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="3"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </li>
+              <template x-for="page in slide">
+                <li
+                  class="cursor-pointer border-l border-black/20 px-[18px] text-sm grid place-items-center"
+                  :class="{'text-black font-bold':active===page,
+                            'border-l-0':slide[0]===page,
+                            }"
+                  @click="active=page"
+                  x-text="page"
+                ></li
+              ></template>
+              <li
+                class="cursor-pointer border-y border-x rounded-tr-[5px] rounded-br-[5px] border-black/20 p-[18px] flex justify-center items-center overflow-hidden"
+                @click="handlePaginationRight"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="3"
+                  stroke="currentColor"
+                  class="w-5 h-5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <!-- Pagination div-->
 
       <!-- hand picked -->
-      <section class="border-t border-black/10 mx-4 pt-4 pb-16">
-        <h3 class="uppercase py-4 font-medium text-black/80 text-sm md:text-xl">
+      <section class="border-t border-[#DDE0E2] mx-6 pb-16">
+        <h3 class="uppercase py-3 font-medium text-[#444] text-sm lg:text-xl">
           HAND PICKED FOR YOU
         </h3>
 
@@ -2732,13 +2840,11 @@
             <a
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
-              ><strong class="font-medium"
+              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
                 >Freja Dining Table - Round</strong
               ></a
             >
-            <p class="text-center text-lg text-gray-700 text-[22px]">
-              £1,050.00
-            </p>
+            <p class="text-center text-[#434d5b] text-[22px]">£1,050.00</p>
           </div>
           <div>
             <img
@@ -2749,11 +2855,11 @@
             <a
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
-              ><strong class="font-medium"
+              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
                 >Two Glass Topped Nesting Tables
               </strong>
             </a>
-            <p class="text-center text-lg text-gray-700 text-[22px]">£350.00</p>
+            <p class="text-center text-[#434d5b] text-[22px]">£350.00</p>
           </div>
           <div>
             <img
@@ -2765,12 +2871,12 @@
             <a
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
-              ><strong class="font-medium">Corinth Dining Table </strong></a
+              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+                >Corinth Dining Table
+              </strong></a
             >
 
-            <p class="text-center text-lg text-gray-700 text-[22px]">
-              £2,695.00
-            </p>
+            <p class="text-center text-[#434d5b] text-[22px]">£2,695.00</p>
           </div>
           <div>
             <img
@@ -2782,13 +2888,11 @@
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
             >
-              <strong class="font-medium">
+              <strong class="font-medium text-lg leading-[26px] text-[#444]">
                 Camille Dining Table - Natural</strong
               ></a
             >
-            <p class="text-center text-lg text-gray-700 text-[22px]">
-              £1,350.00
-            </p>
+            <p class="text-center text-[#434d5b] text-[22px]">£1,350.00</p>
           </div>
           <div>
             <img
@@ -2799,11 +2903,11 @@
             <a
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
-              ><strong class="font-medium"
+              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
                 >Glass Display Console Table - Aged Bronze</strong
               ></a
             >
-            <p class="text-center text-lg text-gray-700 text-[22px]">£450.00</p>
+            <p class="text-center text-[#434d5b] text-[22px]">£450.00</p>
           </div>
         </div>
       </section>
@@ -3021,21 +3125,27 @@
       <div
         class="flex flex-col items-center md:flex-row md:justify-between m-4 my-8 gap-6"
       >
-        <div class="flex items-baseline md:flex-col">
-          <div class="text-gray-900 text-3xl md:text-lg font-regular">
+        <div class="flex-1 flex items-baseline md:flex-col pl-4 desktop:pl-16">
+          <div
+            class="text-[#444] md:text-[18px] text-[30px] font-medium leading-[26px] tracking-[0.5px] -mb-0.5"
+          >
             0330 333 2123
           </div>
-          <p class="text-sm text-[#383737] tracking-tight font-light">
-            MON-FRI 9<span class="text-xs">AM</span> - 5<span class="text-xs"
+          <p
+            class="text-xs leading-[17px] text-[#444] font-light tracking-[0.5px]"
+          >
+            MON-FRI 9<span class="text-[10px]">AM</span> - 5<span
+              class="text-[10px]"
               >PM</span
             >
           </p>
         </div>
+
         <div class="md:basis-96">
           <img src="/footerLogos.png" alt="logos" />
         </div>
 
-        <div class="flex gap-4">
+        <div class="flex-1 flex justify-end gap-4">
           <a href="#">
             <!-- Facebook -->
             <svg

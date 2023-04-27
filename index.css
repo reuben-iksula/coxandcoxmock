@@ -18,12 +18,17 @@ body {
 
 /* range */
 
+#double-thumb-range .noUi-base {
+  height: 0.5rem;
+}
+
 .noUi-base .noUi-connect {
   background: #434d5b;
+  height: 0.5rem;
 }
 
 #double-thumb-range.noUi-horizontal {
-  height: 0.75rem;
+  height: 0.5rem;
 }
 
 #double-thumb-range.noUi-target {
@@ -35,7 +40,7 @@ body {
   border-radius: 50%;
   width: 1.2rem;
   height: 1.2rem;
-  top: -0.3rem;
+  top: -0.4rem;
   border: 1px solid rgba(0, 0, 0, 0.7);
 }
 .noUi-base .noUi-origin .noUi-handle::before,
