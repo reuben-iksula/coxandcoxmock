@@ -1,18 +1,18 @@
-1. Spacing in  sub menu 
-.clearance is in different color
-2. header menu spacing for sign in and basket
-.view all is underlined on hover
-3.carousel label padding
-4.view color is different
-5.price label is missing
-6.price bar not at the right side
-7.margin in product list
-8. letter spacing  1px and fs 18px in headers of product list
-9. font size 22px for prices in product list
-10. both view selects are supposed to be wider.
-11. product list image row has 30px mb instead of padding in the pagination div
-12.main has a px of 15px
-13.pagination has too much border radius, border color is different.
-14. pagination div has items-start, not items-center
-15.pagination div has 10px px
-16. product list image row, offer has fs 16px
+1. Spacing in  sub menu done
+.clearance is in different color done
+2. header menu spacing for sign in and basket done
+.view all is underlined on hover done
+3.carousel label padding done
+4.view color is different done
+5.price label is missing done
+6.price bar not at the right side done
+7.margin in product list done
+8. letter spacing  1px and fs 18px in headers of product list done.
+9. font size 22px for prices in product list done.
+10. both view selects are supposed to be wider. done.
+11. product list image row has 30px mb instead of padding in the pagination div (alternative approach is similar)
+12.main has a px of 15px (alternative approach is similar)
+13.pagination has too much border radius, border color is different. done
+14. pagination div has items-start, not items-center done
+15.pagination div has 10px px (alternative approach is similar)
+16. product list image row, offer has fs 16px done

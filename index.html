@@ -68,7 +68,7 @@
           }
         }
     }"
-      class="relative flex justify-between items-center bg-darkAccent desktop:text-base text-sm desktop:leading-[55px] desktop:min-h-[55px] font-medium h-auto min-h-[45px]"
+      class="relative flex justify-between items-center bg-darkAccent desktop:text-base text-sm desktop:leading-[3.4375rem] desktop:min-h-[3.4375rem] font-medium h-auto min-h-[2.8125rem]"
     >
       <!-- left -->
       <svg
@@ -77,7 +77,7 @@
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="w-4 h-4 text-gray-200 desktop:hidden"
+        class="w-4 h-4 text-gray-200 ml-1 desktop:hidden"
         @click="handleLeft"
       >
         <path
@@ -132,14 +132,14 @@
           </template>
         </div>
       </div>
-
+      <!-- right -->
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="w-4 h-4 desktop:hidden text-gray-200"
+        class="w-4 h-4 mr-1 desktop:hidden text-gray-200"
         @click="handleRight"
       >
         <path
@@ -154,9 +154,9 @@
 
     <!--     -->
     <header class="bg-white">
-      <div class="desktop:pt-[20px]">
+      <div class="desktop:pt-[1.25rem]">
         <div
-          class="grid grid-cols-3 grid-rows-2 desktop:grid-rows-1 desktop:grid-cols-[repeat(2,_minmax(15rem,_1.5fr))_repeat(2,1fr)] items-center desktop:justify-items-center px-4 desktop:px-0 pb-16 desktop:pb-8"
+          class="grid grid-cols-3 grid-rows-2 desktop:grid-rows-1 desktop:grid-cols-[repeat(2,_minmax(240px,_1.5fr))_repeat(2,1fr)] items-center desktop:justify-items-center px-4 desktop:px-0 pb-16 desktop:pb-8"
         >
           <!-- menu bar -->
           <svg
@@ -175,10 +175,10 @@
           </svg>
 
           <picture
-            class="justify-self-center desktop:justify-self-start desktop:ml-[10px] desktop:order-1 desktop:min-w-[20rem] min-w-[10rem]"
+            class="justify-self-center desktop:justify-self-start desktop:ml-[.625rem] desktop:order-1 desktop:min-w-[320px] min-w-[160px]"
           >
-            <source media="(max-width:1199px)" srcset="/logoMobile.png" />
-            <source media="(min-width:1200px)" srcset="/logoDesktop.png" />
+            <source media="(max-width:74.9375rem)" srcset="/logoMobile.png" />
+            <source media="(min-width:75rem)" srcset="/logoDesktop.png" />
 
             <img src="/logoMobile.png" alt="logo" />
           </picture>
@@ -205,7 +205,7 @@
                 />
               </svg>
               <span
-                class="text-base leading-[22px] font-medium hidden desktop:block"
+                class="text-base leading-[1.375rem] font-medium hidden desktop:block"
                 >Sign In</span
               >
             </div>
@@ -223,14 +223,14 @@
                 />
               </svg>
               <span
-                class="text-base leading-[22px] font-medium hidden desktop:block"
+                class="text-base leading-[1.375rem] font-medium hidden desktop:block"
                 >Basket</span
               >
             </div>
           </div>
           <!-- Search -->
           <div
-            class="w-full col-span-3 desktop:col-span-1 desktop:max-w-[420px] desktop:ml-6 desktop:order-2 relative"
+            class="w-full col-span-3 desktop:col-span-1 desktop:max-w-[26.25rem] desktop:ml-6 desktop:order-2 relative"
           >
             <button
               class="w-5 h-5 text-gray-700 absolute left-3.5 top-1/2 -translate-y-1/2 desktop:right-3.5 desktop:left-auto"
@@ -269,7 +269,7 @@
             </svg>
 
             <input
-              class="w-full desktop:w-[102%] h-12 pt-1 pl-10 desktop:pl-4 inline-block rounded-[3px] border border-gray-500 text-gray-700 focus:outline-none focus:bg-blue-50 placeholder-gray-700 desktop:placeholder-gray-500 placeholder:text-sm"
+              class="w-full desktop:w-[102%] h-12 pt-1 pl-10 desktop:pl-4 inline-block rounded-[.1875rem] border border-gray-500 text-gray-700 focus:outline-none focus:bg-blue-50 placeholder-gray-700 desktop:placeholder-gray-500 placeholder:text-sm"
               type="text"
               placeholder="SEARCH"
             />
@@ -277,15 +277,15 @@
 
           <div class="hidden desktop:block desktop:order-3 ml-12">
             <div
-              class="text-[#444] text-[18px] font-medium leading-[26px] tracking-[0.5px] -mb-0.5"
+              class="text-[#444] text-[1.125rem] font-medium leading-[1.625rem] tracking-[.0313rem] -mb-0.5"
             >
               0330 333 2123
             </div>
             <p
-              class="text-xs leading-[17px] text-[#444] font-light tracking-[0.5px]"
+              class="text-xs leading-[1.0625rem] text-[#444] font-light tracking-[.0313rem]"
             >
-              MON-FRI 9<span class="text-[10px]">AM</span> - 5<span
-                class="text-[10px]"
+              MON-FRI 9<span class="text-[.625rem]">AM</span> - 5<span
+                class="text-[.625rem]"
                 >PM</span
               >
             </p>
@@ -355,6 +355,7 @@
       <div
         x-show="navMenu && !isScreenDesktop"
         x-cloak
+        @click="navMenu=false"
         class="fixed inset-0 z-10 bg-black/50"
       ></div>
       <!-- navMenu second section 
@@ -393,7 +394,7 @@
       }"
       >
         <ul
-          class="flex flex-col desktop:flex-row desktop:flex-wrap desktop:justify-evenly gap-[23px] p-4 desktop:p-3 desktop:pb-4 desktop:pt-0 mt-[4.3rem] desktop:m-0 text-[1.30rem] desktop:text-[16px] font-light desktop:font-medium desktop:border-b desktop:border-gray-300 text-[#444444] [&>li>svg]:desktop:hidden"
+          class="flex flex-col desktop:flex-row desktop:flex-wrap desktop:justify-evenly gap-[1.4375rem] p-4 desktop:p-3 desktop:pb-4 desktop:pt-0 mt-[68.8px] desktop:m-0 text-[20.8px] desktop:text-[1rem] font-light desktop:font-medium desktop:border-b desktop:border-gray-300 text-[#444444] [&>li>svg]:desktop:hidden"
         >
           <li>
             <a
@@ -454,7 +455,7 @@
                   >Outdoor Furniture</a
                 >
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Benches & Chairs</a></li>
                   <li><a href="#">Outdoor Dining Tables & Chairs</a></li>
@@ -472,7 +473,7 @@
                 <li>
                   <a class="inline-block p-5" href="#">Outdoor Accessories</a>
                   <ul
-                    class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                    class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                   >
                     <li><a href="#">Decorative Outdoors</a></li>
                     <li><a href="#">Doormats</a></li>
@@ -490,7 +491,7 @@
                 <li>
                   <a class="inline-block p-5" href="#">Outdoor Lighting</a>
                   <ul
-                    class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                    class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                   >
                     <li><a href="#">Decorative Outdoor Lights</a></li>
                     <li><a href="#">Outdoor Wall Lights</a></li>
@@ -503,7 +504,7 @@
                 <li>
                   <a class="inline-block p-5" href="#">Outdoor Trends</a>
                   <ul
-                    class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                    class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                   >
                     <li><a href="#">Tuscan Villa</a></li>
                     <li><a href="#">Industrial Garden</a></li>
@@ -549,7 +550,7 @@
                 <a class="inline-block p-5 text-gray-700" href="#">Seating</a>
 
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li>
                     <a href="#"> Stools </a>
@@ -572,7 +573,7 @@
                 </ul>
 
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li>
                     <a href="#"> Occasional Chairs </a>
@@ -883,12 +884,12 @@
           <ul>
             <li>
               <a
-                class="inline-block py-5 font-medium text-[16px] border-b border-gray-300"
+                class="inline-block py-5 font-medium text-[1rem] border-b border-gray-300"
                 href="#"
                 >Outdoor Furniture</a
               >
               <ul
-                class="flex flex-col py-5 gap-3 font-baskerville leading-[18px] text-[16px]"
+                class="flex flex-col py-5 gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
               >
                 <li><a href="#">Benches & Chairs</a></li>
                 <li><a href="#">Outdoor Dining Tables & Chairs</a></li>
@@ -905,12 +906,12 @@
           <ul>
             <li>
               <a
-                class="inline-block py-5 font-medium text-[16px] border-b border-gray-300"
+                class="inline-block py-5 font-medium text-[1rem] border-b border-gray-300"
                 href="#"
                 >Outdoor Accessories</a
               >
               <ul
-                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
               >
                 <li><a href="#">Decorative Outdoors</a></li>
                 <li><a href="#">Doormats</a></li>
@@ -927,12 +928,12 @@
           <ul>
             <li>
               <a
-                class="inline-block py-5 font-medium text-[16px] border-b border-gray-300"
+                class="inline-block py-5 font-medium text-[1rem] border-b border-gray-300"
                 href="#"
                 >Outdoor Lighting</a
               >
               <ul
-                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
               >
                 <li><a href="#">Decorative Outdoor Lights</a></li>
                 <li><a href="#">Outdoor Wall Lights</a></li>
@@ -944,12 +945,12 @@
           <ul>
             <li>
               <a
-                class="inline-block py-5 font-medium text-[16px] border-b border-gray-300"
+                class="inline-block py-5 font-medium text-[1rem] border-b border-gray-300"
                 href="#"
                 >Outdoor Trends</a
               >
               <ul
-                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
               >
                 <li><a href="#">Tuscan Villa</a></li>
                 <li><a href="#">Industrial Garden</a></li>
@@ -979,13 +980,13 @@
           <ul class="col-span-2">
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Seating</a
               >
               <div class="flex justify-between py-4">
                 <ul
-                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li>
                     <a href="#"> Stools </a>
@@ -1008,7 +1009,7 @@
                 </ul>
 
                 <ul
-                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li>
                     <a href="#"> Occasional Chairs </a>
@@ -1073,13 +1074,13 @@
           <ul>
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Tables</a
               >
               <div>
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Dining Tables</a></li>
                   <li><a href="#">Desks</a></li>
@@ -1143,13 +1144,13 @@
           <ul class="col-span-2">
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Storage</a
               >
               <div class="flex justify-between py-4">
                 <ul
-                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Sideboards</a></li>
                   <li><a href="#">Chests of Drawers</a></li>
@@ -1163,7 +1164,7 @@
                 </ul>
 
                 <ul
-                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#"> Clothes Rails & Screens</a></li>
                   <li><a href="#"> Laundry Baskets</a></li>
@@ -1220,13 +1221,13 @@
           <ul class="col-span-2">
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Bedroom</a
               >
               <div class="flex justify-between py-4">
                 <ul
-                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#"> Bedside Tables</a></li>
                   <li><a href="#"> Beds, Headboards & Mattresses</a></li>
@@ -1237,7 +1238,7 @@
                 </ul>
 
                 <ul
-                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Bedside Lights</a></li>
                   <li><a href="#">Laundry Baskets</a></li>
@@ -1291,13 +1292,13 @@
           <ul>
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Mirrors</a
               >
               <div>
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Wall Mirrors</a></li>
                   <li><a href="#">Full Length Mirrors</a></li>
@@ -1360,13 +1361,13 @@
           <ul>
             <li class="w-full pr-4">
               <a
-                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[1rem] py-5 border-b border-gray-300"
                 href="#"
                 >Lighting</a
               >
 
               <ul
-                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
               >
                 <li><a href="#">Pendants</a></li>
                 <li><a href="#">Floor Lamps</a></li>
@@ -1385,13 +1386,13 @@
           <ul>
             <li class="w-full">
               <a
-                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[1rem] py-5 border-b border-gray-300"
                 href="#"
                 >Outdoor Lighting</a
               >
 
               <ul
-                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
               >
                 <li><a href="#">Decorative Outdoor Lights</a></li>
                 <li><a href="#">Outdoor Wall Lights</a></li>
@@ -1443,13 +1444,13 @@
           <ul class="col-span-2">
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Accessories</a
               >
               <div class="flex justify-between py-4">
                 <ul
-                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Vases</a></li>
                   <li><a href="#">Ornaments</a></li>
@@ -1463,7 +1464,7 @@
                 </ul>
 
                 <ul
-                  class="flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Wall Art</a></li>
                   <li><a href="#">Fireside</a></li>
@@ -1521,13 +1522,13 @@
           <ul>
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Soft Furnishings</a
               >
               <div>
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Cushions</a></li>
                   <li><a href="#">Throws</a></li>
@@ -1591,13 +1592,13 @@
           <ul>
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Rugs</a
               >
               <div>
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Rugs</a></li>
                   <li><a href="#">Runners</a></li>
@@ -1656,13 +1657,13 @@
           <ul>
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Shop By Room</a
               >
               <div>
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Bedroom</a></li>
                   <li><a href="#">Home Office</a></li>
@@ -1725,13 +1726,13 @@
           <ul>
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Gifts</a
               >
               <div>
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">Gifts Ideas</a></li>
                   <li><a href="#">Gift Vouchers</a></li>
@@ -1789,13 +1790,13 @@
           <ul>
             <li class="w-full pr-4">
               <a
-                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[1rem] py-5 border-b border-gray-300"
                 href="#"
                 >Inspiration</a
               >
 
               <ul
-                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
               >
                 <li><a href="#">Style Notes Blog</a></li>
                 <li><a href="#">Online Catalogue</a></li>
@@ -1809,13 +1810,13 @@
           <ul>
             <li class="w-full pr-4">
               <a
-                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[1rem] py-5 border-b border-gray-300"
                 href="#"
                 >Trends</a
               >
 
               <ul
-                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
               >
                 <li><a href="#">Faded Elegance</a></li>
                 <li><a href="#">French Blue</a></li>
@@ -1828,13 +1829,13 @@
           <ul>
             <li class="w-full pr-4">
               <a
-                class="w-full inline-block font-regular text-[16px] py-5 border-b border-gray-300"
+                class="w-full inline-block font-regular text-[1rem] py-5 border-b border-gray-300"
                 href="#"
                 >Outdoor Trends</a
               >
 
               <ul
-                class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
               >
                 <li><a href="#">Tuscan Villa</a></li>
                 <li><a href="#">Industrial Garden</a></li>
@@ -1876,13 +1877,13 @@
           <ul>
             <li class="mr-4">
               <a
-                class="block py-5 font-regular text-[16px] border-b border-gray-300"
+                class="block py-5 font-regular text-[1rem] border-b border-gray-300"
                 href="#"
                 >Clearance</a
               >
               <div>
                 <ul
-                  class="py-5 flex flex-col gap-3 font-baskerville leading-[18px] text-[16px]"
+                  class="py-5 flex flex-col gap-3 font-baskerville leading-[1.125rem] text-[1rem]"
                 >
                   <li><a href="#">25% Off</a></li>
                   <li><a href="#">35% Off</a></li>
@@ -1899,7 +1900,7 @@
     <!-- End Header -->
 
     <!-- Start Main -->
-    <main class="w-[97%] bg-white">
+    <main class="w-full bg-white">
       <div class="flex flex-wrap items-center bg-[#F1F1ED]">
         <section
           class="flex flex-col items-center lg:items-start gap-4 w-full lg:w-[40%] p-6 lg:pl-20 lg:pr-8 pt-8 font-baskerville text-[#444]"
@@ -1921,10 +1922,12 @@
         }
       }"
         >
-          <h1 class="text-3xl lg:text-[44px] leading-[48px] text-[#444]">
+          <h1 class="text-3xl lg:text-[2.75rem] leading-[3rem] text-[#444]">
             Tables
           </h1>
-          <div class="text-center lg:text-start lg:text-lg lg:leading-[29px]">
+          <div
+            class="text-center lg:text-start lg:text-lg lg:leading-[1.8125rem]"
+          >
             <p class="inline" x-ref="h1para" x-effect=" paraHandler($el);">
               A high-quality selection of sturdy and stylish tables from
               practical side tables and desks – perfect for the home office – to
@@ -1935,7 +1938,7 @@
               bedroom.
             </p>
             <button
-              class="inline relative min-w-fit text-[#444] font-normal leading-[28px]"
+              class="inline relative min-w-fit text-[#444] font-normal leading-[1.75rem]"
               @click="readMore=true"
               :class="{'hidden':readMore}"
             >
@@ -1959,7 +1962,7 @@
         </div>
       </div>
       <!-- Image Carousel -->
-      <div class="relative cursor-pointer p-[15px]" x-data="imgslider">
+      <div class="relative cursor-pointer p-[.9375rem]" x-data="imgslider">
         <div id="myGlide" class="glide">
           <div class="hidden md:block" data-glide-el="controls">
             <button data-glide-dir="<" class="glide__arrow glide__arrow--left">
@@ -1970,7 +1973,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 cursor-pointer absolute z-10 left-0 top-[calc((100%_-_80px_+_20px)_/_2)]"
+                class="w-8 h-8 cursor-pointer absolute z-10 left-0 top-[calc((100%_-_5rem_+_1.25rem)_/_2)]"
                 :class="glide.index===0 ? 'bg-white/20':'bg-white/70'"
               >
                 <path
@@ -1987,7 +1990,7 @@
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-8 h-8 cursor-pointer absolute z-10 right-0 top-[calc((100%_-_80px_+_20px)_/_2)] bg-white"
+                class="w-8 h-8 cursor-pointer absolute z-10 right-0 top-[calc((100%_-_5rem_+_1.25rem)_/_2)] bg-white"
                 data-glide-dir=">"
                 :class="glide.index===2 ? 'bg-white/20':'bg-white/70'"
               >
@@ -2005,7 +2008,7 @@
             >
               <li class="glide__slide">
                 <img
-                  class="mb-[10px]"
+                  class="mb-[.625rem]"
                   src="https://picsum.photos/id/2/400/400"
                   alt=""
                 />
@@ -2013,7 +2016,7 @@
               </li>
               <li class="glide__slide">
                 <img
-                  class="mb-[10px]"
+                  class="mb-[.625rem]"
                   src="https://picsum.photos/id/3/400/400"
                   alt=""
                 />
@@ -2021,7 +2024,7 @@
               </li>
               <li class="glide__slide">
                 <img
-                  class="mb-[10px]"
+                  class="mb-[.625rem]"
                   src="https://picsum.photos/id/4/400/400"
                   alt=""
                 />
@@ -2029,7 +2032,7 @@
               </li>
               <li class="glide__slide">
                 <img
-                  class="mb-[10px]"
+                  class="mb-[.625rem]"
                   src="https://picsum.photos/id/5/400/400"
                   alt=""
                 />
@@ -2037,7 +2040,7 @@
               </li>
               <li class="glide__slide">
                 <img
-                  class="mb-[10px]"
+                  class="mb-[.625rem]"
                   src="https://picsum.photos/id/6/400/400"
                   alt=""
                 />
@@ -2045,7 +2048,7 @@
               </li>
               <li class="glide__slide">
                 <img
-                  class="mb-[10px]"
+                  class="mb-[.625rem]"
                   src="https://picsum.photos/id/7/400/400"
                   alt=""
                 />
@@ -2053,7 +2056,7 @@
               </li>
               <li class="glide__slide">
                 <img
-                  class="mb-[10px]"
+                  class="mb-[.625rem]"
                   src="https://picsum.photos/id/8/400/400"
                   alt=""
                 />
@@ -2061,7 +2064,7 @@
               </li>
               <li class="glide__slide">
                 <img
-                  class="mb-[10px]"
+                  class="mb-[.625rem]"
                   src="https://picsum.photos/id/9/400/400"
                   alt=""
                 />
@@ -2097,7 +2100,7 @@
             <select
               name="viewProducts"
               id="viewProducts"
-              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)]"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0rem_0rem_.0625rem_.0625rem_rgb(3,161,252)]"
             >
               <option value="40">40</option>
               <option value="80">80</option>
@@ -2122,7 +2125,7 @@
           <div class="flex items-center gap-6 order-3 md:order-4 ml-auto"> -->
       <!-- switch modes-->
       <!-- <div
-              class="hidden md:flex items-center rounded-[0.4rem] border border-gray-700 overflow-hidden"
+              class="hidden md:flex items-center rounded-[6.4px] border border-gray-700 overflow-hidden"
             >
               <a
                 class="py-3 px-4"
@@ -2146,7 +2149,7 @@
               >
               <select
                 name="sortProducts"
-                class="uppercase border border-black/50 rounded-sm pl-3 pr-8 py-3 md:px-2 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] outline-none appearance-none"
+                class="uppercase border border-black/50 rounded-sm pl-3 pr-8 py-3 md:px-2 focus:shadow-[inset_0rem_0rem_.0625rem_.0625rem_rgb(3,161,252)] outline-none appearance-none"
                 id="sortProducts"
               >
                 <option value="relevance">RELEVANCE</option>
@@ -2199,17 +2202,19 @@
         filterMode:5,
       }
       "
-        class="relative pt-[10px]"
+        class="relative pt-[.625rem]"
       >
         <!-- product numbers -->
 
         <p
-          class="absolute block w-full text-center mb-[30px] text-[#444] text-sm"
+          class="absolute block w-full text-center mb-[1.875rem] text-[#444] text-sm"
         >
           1-40 OF 125 PRODUCTS
         </p>
-        <div class="pt-[50px]">
-          <div class="hidden relative md:inline-block pl-[70px] min-w-max">
+        <div class="pt-[3.125rem]">
+          <div
+            class="hidden relative md:inline-block pl-[2.5rem] lg:pl-[4.375rem] min-w-max"
+          >
             <label for="viewProducts" class="uppercase text-black/80 text-sm"
               >View&nbsp;:&nbsp;&nbsp;</label
             >
@@ -2217,7 +2222,7 @@
             <select
               name="viewProducts"
               id="viewProducts"
-              class="uppercase border border-black/50 rounded-sm p-3 pr-14 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] text-[#444] bg-white font-medium"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-14 outline-none appearance-none focus:shadow-[inset_0rem_0rem_.0625rem_.0625rem_rgb(3,161,252)] text-[#444] bg-white font-medium"
             >
               <option value="40">40</option>
               <option value="80">80</option>
@@ -2239,13 +2244,15 @@
             </svg>
           </div>
 
-          <div class="float-right relative mr-[20px]">
-            <label for="sortProducts" class="uppercase text-[#444] text-sm"
+          <div class="float-right relative mr-[1.25rem]">
+            <label
+              for="sortProducts"
+              class="hidden md:inline-block uppercase text-[#444] text-sm"
               >sort by&nbsp;:&nbsp;&nbsp;</label
             >
             <select
               name="sortProducts"
-              class="uppercase border border-black/50 rounded-sm pl-3 pr-8 py-3 md:pr-6 focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] bg-white outline-none appearance-none font-medium text-[#444]"
+              class="uppercase border border-black/50 rounded-sm pl-3 lg:pr-0 md:pr-8 pr-4 sm:pr-32 py-3 focus:shadow-[inset_0rem_0rem_.0625rem_.0625rem_rgb(3,161,252)] bg-white outline-none appearance-none font-medium text-[#444]"
               id="sortProducts"
             >
               <option value="relevance">RELEVANCE</option>
@@ -2273,16 +2280,16 @@
           </div>
 
           <div
-            class="hidden md:block float-right mx-[20px] rounded-[0.3rem] border border-[#7a7f85] text-[#444] overflow-hidden"
+            class="hidden md:block float-right mx-[1.25rem] rounded-[4.8px] border border-[#7a7f85] text-[#444] overflow-hidden"
           >
             <a
-              class="inline-block py-[11px] px-[15px]"
+              class="inline-block py-[.6875rem] px-[.9375rem]"
               :class="{'bg-gray-700 text-white':filterMode===3}"
               @click.prevent="filterMode=3"
               href="#"
               >3</a
             ><a
-              class="inline-block py-[11px] px-[15px]"
+              class="inline-block py-[.6875rem] px-[.9375rem]"
               :class="{'bg-gray-700 text-white':filterMode===5}"
               @click.prevent="filterMode=5"
               href="#"
@@ -2295,17 +2302,17 @@
             x-data="doubleThumbRange"
           >
             <span
-              class="uppercase block text-center w-full text-sm text-[#444] mb-[5px] mt-[30px] tracking-normal"
+              class="uppercase block text-center w-full text-sm text-[#444] mb-[.3125rem] mt-[1.875rem] tracking-normal"
               >Price</span
             >
             <div class="w-full flex items-center">
               <span
-                class="block desktop:inline mr-16 desktop:mr-4 text-sm font-normal leading-[20px] text-[#444]"
+                class="block desktop:inline mr-16 desktop:mr-4 text-sm font-normal leading-[1.25rem] text-[#444]"
                 x-html="`<span class='text-sm'>£</span>${Math.floor(vals[0])}`"
               ></span>
               <div id="double-thumb-range" x-ref="doubleThumbRange"></div>
               <span
-                class="text-sm font-normal ml-16 desktop:ml-6 leading-[20px] text-[#444]"
+                class="text-sm font-normal ml-16 desktop:ml-6 leading-[1.25rem] text-[#444]"
                 x-html="`<span class='text-sm'>£</span>${Math.floor(vals[1])}`"
               ></span>
             </div>
@@ -2314,23 +2321,26 @@
       </div>
       <!-- product list -->
       <div
-        class="mt-[35px] grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] md:grid-cols-5 px-[15px]"
+        class="mt-[35px] grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(9.375rem,_1fr))] md:grid-cols-5 px-[.9375rem] [&_strong]:tracking-[1px]"
       >
-        <div>
+        <div x-data="{src:'https://picsum.photos/id/20'}">
           <img
-            class="mx-auto w-full"
-            :src="!isScreenTablet && !isScreenDesktop ? 'https://picsum.photos/id/20/250/300':'https://picsum.photos/id/20/200/250'"
+            class="mx-auto w-full cursor-pointer"
+            :src="!isScreenTablet && !isScreenDesktop ? `${src}/250/300`:`${src}/200/250`"
+            @mouseover="src='https://picsum.photos/id/25'"
+            @mouseleave="src='https://picsum.photos/id/20'"
             alt=""
           />
           <div>
             <a
-              class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+              class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
               href="#"
-              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+              ><strong
+                class="font-medium text-lg leading-[1.625rem] text-[#444]"
                 >Limewashed Parquet Dining Table</strong
               ></a
             >
-            <p class="text-center text-[#434d5b] text-[22px]">£1,550.00</p>
+            <p class="text-center text-[#434d5b] text-[1.375rem]">£1,550.00</p>
           </div>
         </div>
         <div>
@@ -2340,17 +2350,17 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
             href="#"
-            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+            ><strong class="font-medium text-lg leading-[1.625rem] text-[#444]"
               >Reclaimed Oak Console Table</strong
             >
           </a>
-          <p class="text-center text-[#434d5b] text-[22px]">£1,175.00</p>
+          <p class="text-center text-[#434d5b] text-[1.375rem]">£1,175.00</p>
         </div>
         <div class="relative">
           <span
-            class="absolute bg-[#434D5B] text-white pl-[9px] pr-[8px] py-[5px] top-0 right-0"
+            class="absolute bg-[#434D5B] text-white pl-[.5625rem] pr-[.5rem] py-[.3125rem] top-0 right-0"
             >New</span
           >
           <img
@@ -2360,16 +2370,16 @@
           />
 
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
             href="#"
-            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+            ><strong class="font-medium text-lg leading-[1.625rem] text-[#444]"
               >Glass Nesting Side Table</strong
             ></a
           >
           <p class="text-sm text-gray-700 text-center mb-4">
             Stock due LATE APRIL. Pre-order now.
           </p>
-          <p class="text-center text-[#434d5b] text-[22px]">£450.00</p>
+          <p class="text-center text-[#434d5b] text-[1.375rem]">£450.00</p>
         </div>
         <div>
           <img
@@ -2378,14 +2388,14 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
             href="#"
           >
-            <strong class="font-medium text-lg leading-[26px] text-[#444]">
+            <strong class="font-medium text-lg leading-[1.625rem] text-[#444]">
               Camille Dining Table - Natural</strong
             ></a
           >
-          <p class="text-center text-[#434d5b] text-[22px]">£1,350.00</p>
+          <p class="text-center text-[#434d5b] text-[1.375rem]">£1,350.00</p>
         </div>
         <div>
           <img
@@ -2394,19 +2404,19 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
             href="#"
-            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+            ><strong class="font-medium text-lg leading-[1.625rem] text-[#444]"
               >Glass Display Console Table - Aged Bronze</strong
             ></a
           >
-          <p class="text-center text-[#434d5b] text-[22px]">£450.00</p>
+          <p class="text-center text-[#434d5b] text-[1.375rem]">£450.00</p>
         </div>
 
         <!-- --- -->
         <div class="relative">
           <span
-            class="absolute bg-[#434D5B] text-white pl-[9px] pr-[8px] py-[5px] top-0 right-0"
+            class="absolute bg-[#434D5B] text-white pl-[.5625rem] pr-[.5rem] py-[.3125rem] top-0 right-0"
             >New</span
           >
           <img
@@ -2416,16 +2426,17 @@
           />
           <div>
             <a
-              class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+              class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
               href="#"
-              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+              ><strong
+                class="font-medium text-lg leading-[1.625rem] text-[#444]"
                 >Freja Dining Table - Rectangular</strong
               >
             </a>
             <p class="text-base text-gray-700 text-center mb-4">
               Stock due LATE APRIL. Pre-order now.
             </p>
-            <p class="text-center text-[#434d5b] text-[22px]">£995.00</p>
+            <p class="text-center text-[#434d5b] text-[1.375rem]">£995.00</p>
           </div>
         </div>
         <div>
@@ -2435,13 +2446,13 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
             href="#"
-            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+            ><strong class="font-medium text-lg leading-[1.625rem] text-[#444]"
               >Industrial Iron Console Table</strong
             >
           </a>
-          <p class="text-center text-[#434d5b] text-[22px]">£525.00</p>
+          <p class="text-center text-[#434d5b] text-[1.375rem]">£525.00</p>
         </div>
         <div>
           <img
@@ -2450,14 +2461,14 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
             href="#"
-            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+            ><strong class="font-medium text-lg leading-[1.625rem] text-[#444]"
               >Mila Side Tables - Charcoal
             </strong></a
           >
 
-          <p class="text-center text-[#434d5b] text-[22px]">
+          <p class="text-center text-[#434d5b] text-[1.375rem]">
             <span class="text-xs uppercase text-[#a7acb0] align-middle"
               >FROM &nbsp;</span
             >£97.50
@@ -2470,14 +2481,14 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
             href="#"
           >
-            <strong class="font-medium text-lg leading-[26px] text-[#444]">
+            <strong class="font-medium text-lg leading-[1.625rem] text-[#444]">
               Camille Display Console - Natural
             </strong></a
           >
-          <p class="text-center text-[#434d5b] text-[22px]">£1,150.00</p>
+          <p class="text-center text-[#434d5b] text-[1.375rem]">£1,150.00</p>
         </div>
         <div>
           <img
@@ -2486,18 +2497,19 @@
             alt=""
           />
           <a
-            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[7px]"
+            class="hover:underline text-gray-900 text-center inline-block pt-6 px-4 mt-4 mb-[.4375rem]"
             href="#"
-            ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+            ><strong class="font-medium text-lg leading-[1.625rem] text-[#444]"
               >Salcombe Dining Table - Rectangular Extendable
             </strong></a
           >
-          <p class="text-center text-[#434d5b] text-[22px]">£925.00</p>
+          <p class="text-center text-[#434d5b] text-[1.375rem]">£925.00</p>
         </div>
       </div>
       <!-- --- -->
       <!-- Pagination div -->
       <div
+        class="pt-16 pb-8 px-4 w-full"
         x-data="{
         pages: Array.from({ length: 10 }, (_, i) => i + 1),
         slide: [],
@@ -2545,7 +2557,6 @@
 
           viewProductValue:'40',
         }"
-        class="pt-16 pb-8 px-4 w-full"
       >
         <!-- <p
           class="order-2 justify-self-center text-black/80 text-center uppercase text-xs md:text-sm"
@@ -2562,7 +2573,7 @@
             name="viewProducts"
             id="viewProducts"
             x-model="viewProductValue"
-            class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] text-[#444]"
+            class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0rem_0rem_.0625rem_.0625rem_rgb(3,161,252)] text-[#444]"
           >
             <option value="40">40</option>
             <option value="80">80</option>
@@ -2648,7 +2659,7 @@
               name="viewProducts"
               id="viewProducts"
               x-model="viewProductValue"
-              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] text-[#444] font-medium"
+              class="uppercase border border-black/50 rounded-sm p-3 pr-10 outline-none appearance-none focus:shadow-[inset_0rem_0rem_.0625rem_.0625rem_rgb(3,161,252)] text-[#444] font-medium"
             >
               <option value="40">40</option>
               <option value="80">80</option>
@@ -2726,10 +2737,10 @@
         <!-- </div> -->
         <!-- pagintion retry -->
         <div
-          class="relative px-[9px] my-5 w-full flex flex-wrap justify-center items-center gap-x-8 desktop:flex-row desktop:justify-between"
+          class="relative px-[.5625rem] my-5 w-full flex flex-wrap justify-center items-center gap-x-8 desktop:flex-row desktop:justify-between"
         >
           <p
-            class="desktop:absolute block w-full text-center mb-[30px] text-[#444] text-sm"
+            class="desktop:absolute block w-full text-center mb-[1.875rem] text-[#444] text-sm"
           >
             1-40 OF 125 PRODUCTS
           </p>
@@ -2741,7 +2752,7 @@
             <select
               name="viewProducts"
               id="viewProducts"
-              class="uppercase border border-[#7a7f85] rounded-[3px] p-3 pr-14 outline-none appearance-none focus:shadow-[inset_0px_0px_1px_1px_rgb(3,161,252)] text-[#444] bg-white font-medium"
+              class="uppercase border border-[#7a7f85] rounded-[.1875rem] p-3 pr-14 outline-none appearance-none focus:shadow-[inset_0rem_0rem_.0625rem_.0625rem_rgb(3,161,252)] text-[#444] bg-white font-medium"
             >
               <option value="40">40</option>
               <option value="80">80</option>
@@ -2765,10 +2776,10 @@
 
           <div>
             <ul
-              class="flex border max-h-12 border-[#444] text-black/60 rounded-[5px]"
+              class="flex border max-h-12 border-[#444] text-black/60 rounded-[.3125rem]"
             >
               <li
-                class="cursor-pointer border-y border-r rounded-tl-[5px] rounded-bl-[5px] border-black/20 p-[18px] flex justify-center items-center"
+                class="cursor-pointer border-y border-r rounded-tl-[.3125rem] rounded-bl-[.3125rem] border-black/20 p-[0.7rem] flex justify-center items-center"
                 :class="{'hidden':click===0}"
                 @click="handlePaginationLeft"
               >
@@ -2789,7 +2800,7 @@
               </li>
               <template x-for="page in slide">
                 <li
-                  class="cursor-pointer border-l border-black/20 px-[18px] text-sm grid place-items-center"
+                  class="cursor-pointer border-l border-black/20 px-[1.125rem] text-sm grid place-items-center"
                   :class="{'text-black font-bold':active===page,
                             'border-l-0':slide[0]===page,
                             }"
@@ -2798,7 +2809,7 @@
                 ></li
               ></template>
               <li
-                class="cursor-pointer border-y border-x rounded-tr-[5px] rounded-br-[5px] border-black/20 p-[18px] flex justify-center items-center overflow-hidden"
+                class="cursor-pointer border-y border-x rounded-tr-[.3125rem] rounded-br-[.3125rem] border-black/20 p-[0.7rem] flex justify-center items-center overflow-hidden"
                 @click="handlePaginationRight"
               >
                 <svg
@@ -2829,7 +2840,7 @@
         </h3>
 
         <div
-          class="grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(150px,_1fr))] md:grid-cols-5"
+          class="grid gap-x-4 gap-y-16 grid-cols-[repeat(auto-fit,_minmax(9.375rem,_1fr))] md:grid-cols-5 [&_strong]:tracking-[1px]"
         >
           <div>
             <img
@@ -2840,11 +2851,12 @@
             <a
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
-              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+              ><strong
+                class="font-medium text-lg leading-[1.625rem] text-[#444]"
                 >Freja Dining Table - Round</strong
               ></a
             >
-            <p class="text-center text-[#434d5b] text-[22px]">£1,050.00</p>
+            <p class="text-center text-[#434d5b] text-[1.375rem]">£1,050.00</p>
           </div>
           <div>
             <img
@@ -2855,11 +2867,12 @@
             <a
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
-              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+              ><strong
+                class="font-medium text-lg leading-[1.625rem] text-[#444]"
                 >Two Glass Topped Nesting Tables
               </strong>
             </a>
-            <p class="text-center text-[#434d5b] text-[22px]">£350.00</p>
+            <p class="text-center text-[#434d5b] text-[1.375rem]">£350.00</p>
           </div>
           <div>
             <img
@@ -2871,12 +2884,13 @@
             <a
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
-              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+              ><strong
+                class="font-medium text-lg leading-[1.625rem] text-[#444]"
                 >Corinth Dining Table
               </strong></a
             >
 
-            <p class="text-center text-[#434d5b] text-[22px]">£2,695.00</p>
+            <p class="text-center text-[#434d5b] text-[1.375rem]">£2,695.00</p>
           </div>
           <div>
             <img
@@ -2888,11 +2902,13 @@
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
             >
-              <strong class="font-medium text-lg leading-[26px] text-[#444]">
+              <strong
+                class="font-medium text-lg leading-[1.625rem] text-[#444]"
+              >
                 Camille Dining Table - Natural</strong
               ></a
             >
-            <p class="text-center text-[#434d5b] text-[22px]">£1,350.00</p>
+            <p class="text-center text-[#434d5b] text-[1.375rem]">£1,350.00</p>
           </div>
           <div>
             <img
@@ -2903,11 +2919,12 @@
             <a
               class="hover:underline text-gray-900 text-center inline-block pt-6 px-6 my-4"
               href="#"
-              ><strong class="font-medium text-lg leading-[26px] text-[#444]"
+              ><strong
+                class="font-medium text-lg leading-[1.625rem] text-[#444]"
                 >Glass Display Console Table - Aged Bronze</strong
               ></a
             >
-            <p class="text-center text-[#434d5b] text-[22px]">£450.00</p>
+            <p class="text-center text-[#434d5b] text-[1.375rem]">£450.00</p>
           </div>
         </div>
       </section>
@@ -2915,17 +2932,20 @@
     <!-- End Main -->
 
     <!-- Footer -->
+
     <footer>
-      <div class="flex flex-col desktop:items-start desktop:flex-row">
+      <div
+        class="flex flex-col desktop:items-start desktop:flex-row desktop:justify-between"
+      >
         <!-- Newsletter -->
         <section
-          class="flex flex-col desktop:order-2 items-center text-[#59666e] font-thin bg-white m-4 mt-6 lg:w-[40%]"
+          class="flex flex-col desktop:order-2 items-center text-[#59666e] bg-white m-4 mt-6 lg:w-[35%]"
         >
-          <h3 class="pt-6 text-xl">Sign Up To Our Newsletter</h3>
-          <a href="#">Read Our Privacy Policy</a>
+          <h3 class="pt-6 text-xl font-normal">Sign Up To Our Newsletter</h3>
+          <a class="text-[#56636c]" href="#">Read Our Privacy Policy</a>
           <form @submit.prevent="" class="flex flex-col w-full p-6">
             <input
-              class="border border-gray-300 w-full p-3.5 mb-4 placeholder:text-gray-500"
+              class="border border-gray-300 w-full p-3.5 mb-4 text-sm placeholder:text-gray-500 outline-none"
               type="text"
               placeholder="name@emailaddress.co.uk"
             />
@@ -2950,7 +2970,7 @@
               }
             }
         }"
-          class="flex flex-col md:grid md:grid-cols-4 md:gap-4 border-t border-x mx-4 md:mx-0 [&_h3~ul]:p-4 border-gray-400/50 [&>ul>li]:border-b [&>ul>li]:border-gray-400/50 [&_h3~ul]:border-t [&_h3~ul]:border-gray-400/50 md:border-none w-[96%] desktop:w-[60%] text-[#5f6b73] [&_h3]:text-[#6e7a82] [&_h3]:m-4 [&_h3]:font-semibold [&_h3]:text-[0.9rem] [&_li]:mb-2 [&_ul:last-child>li]:mb-0 [&_a]:text-sm [&_a]:font-extralight"
+          class="flex flex-col md:grid md:grid-cols-4 md:gap-4 border-t border-x mx-4 md:mx-0 [&_h3~ul]:p-4 border-gray-400/50 [&>ul>li]:border-b [&>ul>li]:border-gray-400/50 [&_h3~ul]:border-t [&_h3~ul]:border-gray-400/50 md:border-none w-[96%] desktop:w-[60%] text-[#5f6b73] [&_h3]:text-[#59666e] [&_h3]:m-4 [&_h3]:whitespace-nowrap [&_h3]:font-medium [&_h3]:leading-[19px] [&_h3]:text-base [&_li]:mb-2 [&_ul:last-child>li]:mb-0 [&_a]:text-base [&_a]:leading-[30px] [&_a]:font-normal [&_a]:text-[#5f6b73]"
         >
           <ul>
             <li
@@ -3127,15 +3147,15 @@
       >
         <div class="flex-1 flex items-baseline md:flex-col pl-4 desktop:pl-16">
           <div
-            class="text-[#444] md:text-[18px] text-[30px] font-medium leading-[26px] tracking-[0.5px] -mb-0.5"
+            class="text-[#444] md:text-[1.125rem] text-[1.875rem] font-medium leading-[1.625rem] tracking-[.0313rem] -mb-0.5"
           >
             0330 333 2123
           </div>
           <p
-            class="text-xs leading-[17px] text-[#444] font-light tracking-[0.5px]"
+            class="text-xs leading-[1.0625rem] text-[#444] font-light tracking-[.0313rem]"
           >
-            MON-FRI 9<span class="text-[10px]">AM</span> - 5<span
-              class="text-[10px]"
+            MON-FRI 9<span class="text-[.625rem]">AM</span> - 5<span
+              class="text-[.625rem]"
               >PM</span
             >
           </p>

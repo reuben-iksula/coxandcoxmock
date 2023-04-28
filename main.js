@@ -16,7 +16,7 @@ Alpine.data("imgslider", () => ({
     rewind: false,
     gap: 15,
     breakpoints: {
-      768: {
+      1020: {
         perView: 3,
       },
     },
